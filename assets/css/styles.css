@@ -1,6 +1,24 @@
 /* ============================================
    GLOBAL STYLES & RESET
    ============================================ */
+
+/* Self-hosted fonts (privacy-first — no Google Fonts requests) */
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400 600;
+    font-display: swap;
+    src: url('../fonts/inter.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 500 700;
+    font-display: swap;
+    src: url('../fonts/outfit.woff2') format('woff2');
+}
+
 *,
 *::before,
 *::after {
@@ -1086,4 +1104,32 @@ ul {
     }
 
     /* Ensure it looks good on mobile */
+}
+
+/* ============================================
+   ACCESSIBILITY (Etap 6)
+   ============================================ */
+
+/* Visible focus states for keyboard navigation */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+summary:focus-visible {
+    outline: 3px solid var(--color-accent-main, #4a7dff);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
 }

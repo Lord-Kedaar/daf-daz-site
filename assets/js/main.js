@@ -23,95 +23,26 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // ============================================
-    // LANGUAGE SWITCHER
+    // LANGUAGE SWITCHER — static per-URL pages
     // ============================================
+    // Language switching is now server-side (per-URL pages). The switcher is a
+    // set of links; we only highlight the link matching the current path.
     const langBtns = document.querySelectorAll('.lang-btn');
     const htmlElement = document.documentElement;
     const themeToggle = document.getElementById('themeToggle');
 
-    // Get saved language or use system preference
-    const getPreferredLang = () => {
-        const saved = storage.get('siteLanguage', '');
-        if (saved) {
-            return saved;
-        }
-        const systemLang = (navigator.language || 'en').toLowerCase();
-        if (systemLang.startsWith('pl')) {
-            return 'pl';
-        }
-        if (systemLang.startsWith('de')) {
-            return 'de';
-        }
-        return 'en';
-    };
-    setLanguage(getPreferredLang());
-
-    langBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const lang = btn.getAttribute('data-lang');
-            setLanguage(lang);
-        });
-    });
-
-    function setLanguage(lang) {
-        // Update localStorage
-        storage.set('siteLanguage', lang);
-
-        // Update HTML lang attribute
-        htmlElement.setAttribute('lang', lang);
-
-        // Update active button state
+    (function highlightCurrentLang() {
+        const path = window.location.pathname;
+        const langMap = { '/pl/': 'pl', '/en/': 'en' };
+        const current = langMap[path] || (path.startsWith('/pl') ? 'pl' : path.startsWith('/en') ? 'en' : 'de');
         langBtns.forEach(btn => {
-            if (btn.getAttribute('data-lang') === lang) {
-                btn.classList.add('active');
-            } else {
-                btn.classList.remove('active');
-            }
+            const matches = btn.getAttribute('href') && (
+                (current === 'de' && btn.getAttribute('href') === '/') ||
+                btn.getAttribute('href') === ('/' + current + '/')
+            );
+            btn.classList.toggle('active', !!matches);
         });
-
-        // Hide all language-specific elements (but keep language buttons visible)
-        const allElements = document.querySelectorAll('[data-lang]');
-        allElements.forEach(el => {
-            if (el.classList.contains('lang-btn')) {
-                return;
-            }
-            const langData = el.getAttribute('data-lang');
-            const parentLi = el.parentElement && el.parentElement.tagName === 'LI' ? el.parentElement : null;
-
-            if (parentLi) {
-                parentLi.style.display = langData === lang ? '' : 'none';
-                return;
-            }
-
-            if (langData === lang) {
-                el.style.display = '';
-            } else {
-                el.style.display = 'none';
-            }
-        });
-
-        // Update aria-labels for accessibility
-        langBtns.forEach(btn => {
-            const lang = btn.getAttribute('data-lang');
-            const langLabels = {
-                'de': 'Deutsch',
-                'en': 'English',
-                'pl': 'Polski'
-            };
-            btn.setAttribute('aria-label', langLabels[lang]);
-        });
-
-        // Update mobile menu label based on language
-        const mobileToggleBtn = document.querySelector('.mobile-toggle');
-        if (mobileToggleBtn) {
-            const toggleLabels = {
-                'de': 'Menü öffnen',
-                'en': 'Open menu',
-                'pl': 'Otwórz menu'
-            };
-            mobileToggleBtn.setAttribute('aria-label', toggleLabels[lang] || toggleLabels.de);
-        }
-    }
+    })();
 
     // ============================================
     // THEME TOGGLE
