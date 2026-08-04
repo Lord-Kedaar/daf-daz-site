@@ -134,7 +134,12 @@ def check_html(path, root):
         try:
             data = json.loads(blk)
             assert isinstance(data, dict) and "@context" in data, "no @context"
-            assert "30.00" not in json.dumps(data) or "unitCode" not in json.dumps(data) or "H" not in json.dumps(data.get("offers", {}), ensure_ascii=False), "suspicious unitCode"
+            # Dekret 8: unitCode "H" for a 30 EUR price is forbidden (30 EUR = 45 min).
+            # Any referenceQuantity with unitCode H is a false unit.
+            text = json.dumps(data, ensure_ascii=False)
+            for m in re.finditer(r'"unitCode"\s*:\s*"([^"]+)"', text):
+                if m.group(1) == "H":
+                    raise AssertionError("unitCode H (per-hour) used for a 30 EUR / 45 min price")
         except Exception as e:
             err(path, f"JSON-LD invalid: {e}")
 
