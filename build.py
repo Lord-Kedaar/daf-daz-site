@@ -21,7 +21,7 @@ import sys
 BASE = "https://daf-daz.radoslaw-pleskot.com"
 SRC_INDEX = "_src/index.html"
 SRC_LEGAL = "_src/legal"
-OG_IMAGE = f"{BASE}/assets/img/og-portrait.jpg"
+OG_IMAGE = f"{BASE}/assets/img/og-hero.jpg"
 
 LANGS = ("de", "pl", "en")
 
