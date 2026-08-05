@@ -21,6 +21,7 @@ import sys
 BASE = "https://daf-daz.radoslaw-pleskot.com"
 SRC_INDEX = "_src/index.html"
 SRC_LEGAL = "_src/legal"
+OG_IMAGE = f"{BASE}/assets/img/og-portrait.jpg"
 
 LANGS = ("de", "pl", "en")
 
@@ -202,7 +203,7 @@ def make_head(lang, page):
     <meta property="og:title" content="{title}" />
     <meta property="og:description" content="{desc}" />
     <meta property="og:locale" content="{OG_LOCALE[lang]}" />
-{alt_locales}    <meta property="og:image" content="{BASE}/assets/img/og-image.jpg" />
+{alt_locales}    <meta property="og:image" content="{OG_IMAGE}" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Radosław Pleskot — Deutschunterricht in Wien" />
@@ -212,7 +213,7 @@ def make_head(lang, page):
     <meta name="twitter:url" content="{canonical}" />
     <meta name="twitter:title" content="{title}" />
     <meta name="twitter:description" content="{desc}" />
-    <meta name="twitter:image" content="{BASE}/assets/img/og-image.jpg" />
+    <meta name="twitter:image" content="{OG_IMAGE}" />
 
     <title>{title}</title>
 
