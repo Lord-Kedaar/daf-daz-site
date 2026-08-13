@@ -102,7 +102,7 @@
   - LOCAL_CITATIONS_PLAN.md (nowy)
   - REVIEWS_REQUEST_TEMPLATE.md (nowy)
 - **verification:** git status czysty po commicie; git log zawiera commit Phase 4; brak zmian w plikach publicznych (index.html, build.py, landings, sitemap.xml, robots.txt — nietknięte).
-- **evidence:** commit 059e147 ("SEO Phase 4: local SEO preparation materials"); diff = 3 nowe pliki (338 insertions), 0 modyfikacji istniejących.
+- **evidence:** commit 54eef98 ("SEO Phase 4: local SEO preparation materials"); diff = 3 nowe pliki (338 insertions), 0 modyfikacji istniejących.
 - **rollback_path:** `git reset --hard HEAD~1` (lokalnie; nic nie zostało wypchnięte).
 - **risks:** brak — zero side-effects; jedyne ryzyko to ręczne błędy przy późniejszym zakładaniu GBP (mitygowane przez HUMAN_REQUIRED i VERIFY_CURRENT_UI).
 - **next_action:** ręczne założenie GBP przez właściciela (wymaga logowania do Google); weryfikacja kategorii w aktualnym UI; decyzje HUMAN_REQUIRED z §5.
