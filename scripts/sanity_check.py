@@ -33,6 +33,11 @@ INDEXABLE = [
     "/pl/legal/privacy.html",
     "/en/legal/imprint.html",
     "/en/legal/privacy.html",
+    # Phase 2 — priority landings
+    "/deutsch-privatunterricht-wien/",
+    "/deutsch-fuer-polnischsprachige-wien/",
+    "/pl/niemiecki-dla-polakow-wieden/",
+    "/pl/przygotowanie-oeif-oesd-wieden/",
 ]
 
 HREFLANG_GROUPS = {
@@ -45,6 +50,9 @@ HREFLANG_GROUPS = {
     "/pl/legal/privacy.html": ["/legal/privacy.html", "/pl/legal/privacy.html", "/en/legal/privacy.html"],
     "/en/legal/imprint.html": ["/legal/imprint.html", "/pl/legal/imprint.html", "/en/legal/imprint.html"],
     "/en/legal/privacy.html": ["/legal/privacy.html", "/pl/legal/privacy.html", "/en/legal/privacy.html"],
+    # Phase 2 — real DE<->PL pair only; single-language landings have no group
+    "/deutsch-fuer-polnischsprachige-wien/": ["/deutsch-fuer-polnischsprachige-wien/", "/pl/niemiecki-dla-polakow-wieden/"],
+    "/pl/niemiecki-dla-polakow-wieden/": ["/deutsch-fuer-polnischsprachige-wien/", "/pl/niemiecki-dla-polakow-wieden/"],
 }
 
 ERRORS = []
@@ -102,14 +110,14 @@ def check_html(path, root):
         if re.search(pat, src):
             err(path, f"forbidden pattern: {label}")
 
-    # 5b. hreflang reciprocity
+    # 5b. hreflang reciprocity (groups may be 3-language or 2-language pairs)
     hfs = dict(re.findall(r'hreflang="([^"]+)" href="([^"]+)"', src))
     group = HREFLANG_GROUPS.get(path)
     if group is not None:
-        for l, url in (("de", BASE + group[0]), ("pl", BASE + group[1]), ("en", BASE + group[2])):
-            if hfs.get(l) != url:
+        for l, url in zip(("de", "pl", "en"), group):
+            if hfs.get(l) != BASE + url:
                 err(path, f"hreflang {l} missing/mismatched (got {hfs.get(l)}, want {url})")
-        if hfs.get("x-default") != BASE + group[0]:
+        if len(group) == 3 and hfs.get("x-default") != BASE + group[0]:
             err(path, "hreflang x-default missing/mismatched")
 
     # 4. internal links and assets

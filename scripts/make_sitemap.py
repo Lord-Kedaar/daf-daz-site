@@ -17,6 +17,11 @@ URLS = [
     "/pl/legal/privacy.html",
     "/en/legal/imprint.html",
     "/en/legal/privacy.html",
+    # Phase 2 — priority landings
+    "/deutsch-privatunterricht-wien/",
+    "/deutsch-fuer-polnischsprachige-wien/",
+    "/pl/niemiecki-dla-polakow-wieden/",
+    "/pl/przygotowanie-oeif-oesd-wieden/",
 ]
 
 today = datetime.date.today().isoformat()

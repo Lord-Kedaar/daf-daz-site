@@ -40,6 +40,40 @@ PAGE_URLS = {
     "privacy": {"de": "/legal/privacy.html", "pl": "/pl/legal/privacy.html", "en": "/en/legal/privacy.html"},
 }
 
+# Phase 2 — priority landing pages (single-language, canonical self).
+# hreflang is set ONLY where a real counterpart exists (DE<->PL pair below);
+# pages without a counterpart get no hreflang at all (no fake translations).
+LANDING_PAGES = {
+    "deutsch-privatunterricht-wien": {
+        "lang": "de",
+        "url": "/deutsch-privatunterricht-wien/",
+        "title": "Privatunterricht Deutsch in Wien | Radosław Pleskot",
+        "description": "Privater Deutschunterricht in Wien und online: Einzelunterricht für Alltag, Beruf, Schule und Prüfungen (ÖIF, ÖSD). A1–B2+. Kostenloses Erstgespräch.",
+        "hreflang": None,
+    },
+    "deutsch-fuer-polnischsprachige-wien": {
+        "lang": "de",
+        "url": "/deutsch-fuer-polnischsprachige-wien/",
+        "title": "Deutsch für Polnischsprachige in Wien | Radosław Pleskot",
+        "description": "Deutschunterricht für Polnischsprachige in Wien: Erklärungen auf Polnisch, Unterricht auf Deutsch. Alltag, Beruf, ÖIF-/ÖSD-Vorbereitung. A1–B2+.",
+        "hreflang": {"pl": "/pl/niemiecki-dla-polakow-wieden/"},
+    },
+    "niemiecki-dla-polakow-wieden": {
+        "lang": "pl",
+        "url": "/pl/niemiecki-dla-polakow-wieden/",
+        "title": "Niemiecki dla Polaków w Wiedniu | Radosław Pleskot",
+        "description": "Nauka niemieckiego dla Polaków w Wiedniu: wyjaśnienia po polsku, lekcje po niemiecku. Do życia, pracy i egzaminów ÖIF/ÖSD. Poziomy A1–B2+.",
+        "hreflang": {"de": "/deutsch-fuer-polnischsprachige-wien/"},
+    },
+    "przygotowanie-oeif-oesd-wieden": {
+        "lang": "pl",
+        "url": "/pl/przygotowanie-oeif-oesd-wieden/",
+        "title": "Przygotowanie do egzaminów ÖIF i ÖSD w Wiedniu | Radosław Pleskot",
+        "description": "Realistyczne przygotowanie do egzaminów ÖIF i ÖSD w Wiedniu i online: formaty zadań, słownictwo, mówienie. Poziomy A1–B2+. Bez gwarancji egzaminacyjnych.",
+        "hreflang": None,
+    },
+}
+
 # Dekret 7.3 — meta title/description per language
 META = {
     "de": {
@@ -406,6 +440,114 @@ class BodyFilter(html.parser.HTMLParser):
         self.out.append(render_tag(tag, a, selfclosing))
 
 
+# --- Landing pages (Phase 2) -------------------------------------------------
+
+def landing_json_ld(slug, cfg):
+    canonical = BASE + cfg["url"]
+    graph = [
+        {
+            "@type": "WebPage",
+            "@id": canonical,
+            "url": canonical,
+            "name": cfg["title"],
+            "description": cfg["description"],
+            "inLanguage": cfg["lang"],
+            "isPartOf": {"@id": f"{BASE}/#website"},
+        },
+        {
+            "@type": "WebSite",
+            "@id": f"{BASE}/#website",
+            "url": BASE + "/",
+            "name": META["de"]["title"],
+            "inLanguage": cfg["lang"],
+            "publisher": {"@id": f"{BASE}/#person"},
+        },
+        {
+            "@type": "Person",
+            "@id": f"{BASE}/#person",
+            "name": "Radosław Pleskot",
+            "jobTitle": "Sprachtrainer DaF/DaZ",
+            "url": BASE + "/",
+            "address": {"@type": "PostalAddress", "addressLocality": "Wien", "addressCountry": "AT"},
+        },
+    ]
+    return json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False, indent=4)
+
+
+def make_landing_head(slug, cfg):
+    canonical = BASE + cfg["url"]
+    lang = cfg["lang"]
+    hreflang = ""
+    if cfg["hreflang"]:
+        for l, url in cfg["hreflang"].items():
+            hreflang += f'    <link rel="alternate" hreflang="{l}" href="{BASE + url}" />\n'
+        hreflang += f'    <link rel="alternate" hreflang="{lang}" href="{canonical}" />\n'
+
+    return f"""<!doctype html>
+<html lang="{lang}" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="{cfg['description']}" />
+    <meta name="author" content="Radoslaw Pleskot" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="{canonical}" />
+
+    <!-- Hreflang (only real counterparts) -->
+{hreflang}    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{canonical}" />
+    <meta property="og:title" content="{cfg['title']}" />
+    <meta property="og:description" content="{cfg['description']}" />
+    <meta property="og:locale" content="{OG_LOCALE[lang]}" />
+    <meta property="og:image" content="{OG_IMAGE}" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Radosław Pleskot — Deutschunterricht in Wien" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="{canonical}" />
+    <meta name="twitter:title" content="{cfg['title']}" />
+    <meta name="twitter:description" content="{cfg['description']}" />
+    <meta name="twitter:image" content="{OG_IMAGE}" />
+
+    <title>{cfg['title']}</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg" />
+    <link rel="alternate icon" href="/assets/img/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/assets/img/favicon.svg" />
+
+    <!-- Preload Critical Resources for LCP -->
+    <link rel="preload" href="/assets/img/hero.webp" as="image" type="image/webp" fetchpriority="high" />
+    <link rel="preload" href="/assets/img/hero2.webp" as="image" type="image/webp" media="(prefers-color-scheme: dark)" />
+    <link rel="preload" href="/assets/css/styles.css" as="style" />
+    <link rel="preload" href="/assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin />
+
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+{landing_json_ld(slug, cfg)}
+    </script>
+</head>
+"""
+
+
+def generate_landing(slug, cfg):
+    src_path = os.path.join("_src", "landings", f"{slug}.html")
+    src = open(src_path, encoding="utf-8").read()
+    # Extract only the <body> content (skip the source's own <head>).
+    m = re.search(r"<body>(.*)</body>", src, re.S)
+    if not m:
+        raise SystemExit(f"ERROR: {src_path} has no <body> block")
+    body = m.group(1).strip()
+    head = make_landing_head(slug, cfg)
+    return head + "\n<body>\n" + body + "\n</body>\n</html>\n"
+
+
 # --- Assembly ----------------------------------------------------------------
 
 def generate_page(lang, page):
@@ -443,6 +585,14 @@ def main():
             with open(path, "w", encoding="utf-8") as f:
                 f.write(html)
             print(f"  wrote {path} ({len(html)} bytes)")
+
+    for slug, cfg in LANDING_PAGES.items():
+        html = generate_landing(slug, cfg)
+        path = cfg["url"].lstrip("/") + "index.html"
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        with open(path, "w", encoding="utf-8") as f:
+            f.write(html)
+        print(f"  wrote {path} ({len(html)} bytes)")
     print("done.")
 
 
