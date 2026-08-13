@@ -85,6 +85,32 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ============================================
+    // UTM / LANDING PAGE CAPTURE (privacy-first)
+    // ============================================
+    // Reads UTM parameters from the URL and copies them into the hidden form
+    // fields. No cookies, no external trackers, no storage. If the URL has no
+    // UTM parameters, the fields stay empty and the form still works.
+    const utmFields = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'landing_page'];
+    const urlParams = new URLSearchParams(window.location.search);
+    const utmForm = document.querySelector('.contact-form form');
+    if (utmForm) {
+        utmFields.forEach(name => {
+            const field = utmForm.querySelector(`input[name="${name}"]`);
+            if (!field) {
+                return;
+            }
+            if (name === 'landing_page') {
+                field.value = window.location.pathname + window.location.search;
+            } else {
+                const value = urlParams.get(name);
+                if (value) {
+                    field.value = value;
+                }
+            }
+        });
+    }
+
+    // ============================================
     // CONTACT FORM STATUS
     // ============================================
     const contactForm = document.querySelector('.contact-form form');

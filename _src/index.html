@@ -216,6 +216,57 @@
             </div>
         </section>
 
+        <!-- Schnelle Antwort Section -->
+        <section class="section section-alt" id="antwort">
+            <div class="container">
+                <h2 class="section-title" data-lang="de">Schnelle Antwort</h2>
+                <h2 class="section-title" data-lang="en">Quick Answers</h2>
+                <h2 class="section-title" data-lang="pl">Szybka odpowiedź</h2>
+                <div class="quick-answer">
+                    <div class="qa-item">
+                        <h3 data-lang="de">Preise</h3>
+                        <h3 data-lang="en">Prices</h3>
+                        <h3 data-lang="pl">Ceny</h3>
+                        <p data-lang="de">Vor Ort in Wien: 30 € / 45 Min (40 € / 60 Min). Online: 21 € / 45 Min (28 € / 60 Min).</p>
+                        <p data-lang="en">In person in Vienna: EUR 30 / 45 min (EUR 40 / 60 min). Online: EUR 21 / 45 min (EUR 28 / 60 min).</p>
+                        <p data-lang="pl">Stacjonarnie w Wiedniu: 30 € / 45 min (40 € / 60 min). Online: 21 € / 45 min (28 € / 60 min).</p>
+                    </div>
+                    <div class="qa-item">
+                        <h3 data-lang="de">Niveaus</h3>
+                        <h3 data-lang="en">Levels</h3>
+                        <h3 data-lang="pl">Poziomy</h3>
+                        <p data-lang="de">Von Anfängern bis Mittelstufe (A1 – B2+).</p>
+                        <p data-lang="en">From complete beginners to upper-intermediate (A1 – B2+).</p>
+                        <p data-lang="pl">Od początkujących do średnio zaawansowanych (A1 – B2+).</p>
+                    </div>
+                    <div class="qa-item">
+                        <h3 data-lang="de">Ort</h3>
+                        <h3 data-lang="en">Location</h3>
+                        <h3 data-lang="pl">Miejsce</h3>
+                        <p data-lang="de">Vor Ort in Wien oder online (z. B. Google Meet oder MS Teams).</p>
+                        <p data-lang="en">In person in Vienna or online (e.g. Google Meet or MS Teams).</p>
+                        <p data-lang="pl">Stacjonarnie w Wiedniu lub online (np. Google Meet lub MS Teams).</p>
+                    </div>
+                    <div class="qa-item">
+                        <h3 data-lang="de">Erklärungen auf Polnisch</h3>
+                        <h3 data-lang="en">Explanations in Polish</h3>
+                        <h3 data-lang="pl">Wyjaśnienia po polsku</h3>
+                        <p data-lang="de">Für Polnischsprachige: Erklärungen auf Polnisch, Unterricht auf Deutsch.</p>
+                        <p data-lang="en">For Polish speakers: explanations in Polish, lessons in German.</p>
+                        <p data-lang="pl">Dla osób mówiących po polsku: wyjaśnienia po polsku, lekcje po niemiecku.</p>
+                    </div>
+                    <div class="qa-item">
+                        <h3 data-lang="de">Prüfungen</h3>
+                        <h3 data-lang="en">Exams</h3>
+                        <h3 data-lang="pl">Egzaminy</h3>
+                        <p data-lang="de">Vorbereitung auf ÖIF- und ÖSD-Prüfungen. Keine Garantie auf das Bestehen.</p>
+                        <p data-lang="en">Preparation for ÖIF and ÖSD exams. No guarantee of passing.</p>
+                        <p data-lang="pl">Przygotowanie do egzaminów ÖIF i ÖSD. Bez gwarancji zdania.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Für wen? Section -->
         <section class="section" id="wer">
             <div class="container">
@@ -507,6 +558,11 @@
                         </div>
                     </details>
                 </div>
+                <div class="hero-cta price-cta">
+                    <a href="#kontakt" class="btn btn-primary" data-lang="de">Kostenloses Erstgespräch vereinbaren</a>
+                    <a href="#kontakt" class="btn btn-primary" data-lang="en">Book a free consultation</a>
+                    <a href="#kontakt" class="btn btn-primary" data-lang="pl">Umów bezpłatną konsultację</a>
+                </div>
             </div>
         </section>
 
@@ -674,6 +730,21 @@
                         </div>
                     </div>
                     <div class="contact-form">
+                        <p class="form-hint" data-lang="de">
+                            <strong>Was hilft mir?</strong> Schreiben Sie kurz, was Sie lernen möchten
+                            (z. B. „Deutsch für die Arbeit“ oder „ÖIF A2“). Niveau und Ziel sind
+                            optional — eine kurze Nachricht reicht völlig.
+                        </p>
+                        <p class="form-hint" data-lang="en">
+                            <strong>What helps me?</strong> Briefly tell me what you would like to learn
+                            (e.g. “German for work” or “ÖIF A2”). Level and goal are optional — a short
+                            message is all I need.
+                        </p>
+                        <p class="form-hint" data-lang="pl">
+                            <strong>Co mi pomoże?</strong> Napisz krótko, czego chcesz się nauczyć
+                            (np. „niemiecki do pracy” albo „ÖIF A2”). Poziom i cel są opcjonalne —
+                            wystarczy krótka wiadomość.
+                        </p>
                         <form action="https://formspree.io/f/xqeeogvv" method="POST" novalidate>
                             <div class="form-group">
                                 <label for="name" data-lang="de">Name</label>
@@ -686,6 +757,52 @@
                                 <label for="email" data-lang="en">Email</label>
                                 <label for="email" data-lang="pl">E-mail</label>
                                 <input type="email" id="email" name="email" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="level" data-lang="de">Ihr Niveau (optional)</label>
+                                <label for="level" data-lang="en">Your level (optional)</label>
+                                <label for="level" data-lang="pl">Twój poziom (opcjonalnie)</label>
+                                <select id="level" name="level">
+                                    <option value="" data-lang="de">— Bitte wählen —</option>
+                                    <option value="" data-lang="en">— Please select —</option>
+                                    <option value="" data-lang="pl">— Wybierz —</option>
+                                    <option value="A1">A1</option>
+                                    <option value="A2">A2</option>
+                                    <option value="B1">B1</option>
+                                    <option value="B2">B2</option>
+                                    <option value="B2+">B2+</option>
+                                    <option value="unsure" data-lang="de">Ich weiß es nicht</option>
+                                    <option value="unsure" data-lang="en">Not sure</option>
+                                    <option value="unsure" data-lang="pl">Nie wiem</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="goal" data-lang="de">Ihr Ziel (optional)</label>
+                                <label for="goal" data-lang="en">Your goal (optional)</label>
+                                <label for="goal" data-lang="pl">Twój cel (opcjonalnie)</label>
+                                <select id="goal" name="goal">
+                                    <option value="" data-lang="de">— Bitte wählen —</option>
+                                    <option value="" data-lang="en">— Please select —</option>
+                                    <option value="" data-lang="pl">— Wybierz —</option>
+                                    <option value="alltag" data-lang="de">Alltag</option>
+                                    <option value="alltag" data-lang="en">Everyday life</option>
+                                    <option value="alltag" data-lang="pl">Codzienność</option>
+                                    <option value="arbeit" data-lang="de">Arbeit / Beruf</option>
+                                    <option value="arbeit" data-lang="en">Work</option>
+                                    <option value="arbeit" data-lang="pl">Praca</option>
+                                    <option value="schule" data-lang="de">Schule</option>
+                                    <option value="schule" data-lang="en">School</option>
+                                    <option value="schule" data-lang="pl">Szkoła</option>
+                                    <option value="oefif" data-lang="de">ÖIF-Prüfung</option>
+                                    <option value="oefif" data-lang="en">ÖIF exam</option>
+                                    <option value="oefif" data-lang="pl">Egzamin ÖIF</option>
+                                    <option value="oesd" data-lang="de">ÖSD-Prüfung</option>
+                                    <option value="oesd" data-lang="en">ÖSD exam</option>
+                                    <option value="oesd" data-lang="pl">Egzamin ÖSD</option>
+                                    <option value="konversation" data-lang="de">Konversation</option>
+                                    <option value="konversation" data-lang="en">Conversation</option>
+                                    <option value="konversation" data-lang="pl">Konwersacja</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="message" data-lang="de">Nachricht</label>
@@ -707,6 +824,11 @@
                                 <label for="website">Website</label>
                                 <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
                             </div>
+                            <input type="hidden" name="utm_source" value="" />
+                            <input type="hidden" name="utm_medium" value="" />
+                            <input type="hidden" name="utm_campaign" value="" />
+                            <input type="hidden" name="utm_content" value="" />
+                            <input type="hidden" name="landing_page" value="" />
                             <button type="submit" class="btn btn-primary" data-lang="de" data-label="Nachricht senden"
                                 data-loading="Senden...">
                                 Nachricht senden

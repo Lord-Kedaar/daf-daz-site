@@ -213,6 +213,57 @@
             </div>
         </section>
 
+        <!-- Schnelle Antwort Section -->
+        <section class="section section-alt" id="antwort">
+            <div class="container">
+                
+                
+                <h2 class="section-title">Szybka odpowiedź</h2>
+                <div class="quick-answer">
+                    <div class="qa-item">
+                        
+                        
+                        <h3>Ceny</h3>
+                        
+                        
+                        <p>Stacjonarnie w Wiedniu: 30 € / 45 min (40 € / 60 min). Online: 21 € / 45 min (28 € / 60 min).</p>
+                    </div>
+                    <div class="qa-item">
+                        
+                        
+                        <h3>Poziomy</h3>
+                        
+                        
+                        <p>Od początkujących do średnio zaawansowanych (A1 – B2+).</p>
+                    </div>
+                    <div class="qa-item">
+                        
+                        
+                        <h3>Miejsce</h3>
+                        
+                        
+                        <p>Stacjonarnie w Wiedniu lub online (np. Google Meet lub MS Teams).</p>
+                    </div>
+                    <div class="qa-item">
+                        
+                        
+                        <h3>Wyjaśnienia po polsku</h3>
+                        
+                        
+                        <p>Dla osób mówiących po polsku: wyjaśnienia po polsku, lekcje po niemiecku.</p>
+                    </div>
+                    <div class="qa-item">
+                        
+                        
+                        <h3>Egzaminy</h3>
+                        
+                        
+                        <p>Przygotowanie do egzaminów ÖIF i ÖSD. Bez gwarancji zdania.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Für wen? Section -->
         <section class="section" id="wer">
             <div class="container">
@@ -415,6 +466,11 @@
                         </div>
                     </details>
                 </div>
+                <div class="hero-cta price-cta">
+                    
+                    
+                    <a href="#kontakt" class="btn btn-primary">Umów bezpłatną konsultację</a>
+                </div>
             </div>
         </section>
 
@@ -526,6 +582,13 @@
                         </div>
                     </div>
                     <div class="contact-form">
+                        
+                        
+                        <p class="form-hint">
+                            <strong>Co mi pomoże?</strong> Napisz krótko, czego chcesz się nauczyć
+                            (np. „niemiecki do pracy” albo „ÖIF A2”). Poziom i cel są opcjonalne —
+                            wystarczy krótka wiadomość.
+                        </p>
                         <form action="https://formspree.io/f/xqeeogvv" method="POST" novalidate>
                             <div class="form-group">
                                 
@@ -538,6 +601,52 @@
                                 
                                 <label for="email">E-mail</label>
                                 <input type="email" id="email" name="email" required />
+                            </div>
+                            <div class="form-group">
+                                
+                                
+                                <label for="level">Twój poziom (opcjonalnie)</label>
+                                <select id="level" name="level">
+                                    
+                                    
+                                    <option value="">— Wybierz —</option>
+                                    <option value="A1">A1</option>
+                                    <option value="A2">A2</option>
+                                    <option value="B1">B1</option>
+                                    <option value="B2">B2</option>
+                                    <option value="B2+">B2+</option>
+                                    
+                                    
+                                    <option value="unsure">Nie wiem</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                
+                                
+                                <label for="goal">Twój cel (opcjonalnie)</label>
+                                <select id="goal" name="goal">
+                                    
+                                    
+                                    <option value="">— Wybierz —</option>
+                                    
+                                    
+                                    <option value="alltag">Codzienność</option>
+                                    
+                                    
+                                    <option value="arbeit">Praca</option>
+                                    
+                                    
+                                    <option value="schule">Szkoła</option>
+                                    
+                                    
+                                    <option value="oefif">Egzamin ÖIF</option>
+                                    
+                                    
+                                    <option value="oesd">Egzamin ÖSD</option>
+                                    
+                                    
+                                    <option value="konversation">Konwersacja</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 
@@ -556,6 +665,11 @@
                                 <label for="website">Website</label>
                                 <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
                             </div>
+                            <input type="hidden" name="utm_source" value="" />
+                            <input type="hidden" name="utm_medium" value="" />
+                            <input type="hidden" name="utm_campaign" value="" />
+                            <input type="hidden" name="utm_content" value="" />
+                            <input type="hidden" name="landing_page" value="" />
                             
                             
                             <button type="submit" class="btn btn-primary" data-label="Wyślij wiadomość" data-loading="Wysyłanie...">

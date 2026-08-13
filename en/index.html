@@ -213,6 +213,57 @@
             </div>
         </section>
 
+        <!-- Schnelle Antwort Section -->
+        <section class="section section-alt" id="antwort">
+            <div class="container">
+                
+                <h2 class="section-title">Quick Answers</h2>
+                
+                <div class="quick-answer">
+                    <div class="qa-item">
+                        
+                        <h3>Prices</h3>
+                        
+                        
+                        <p>In person in Vienna: EUR 30 / 45 min (EUR 40 / 60 min). Online: EUR 21 / 45 min (EUR 28 / 60 min).</p>
+                        
+                    </div>
+                    <div class="qa-item">
+                        
+                        <h3>Levels</h3>
+                        
+                        
+                        <p>From complete beginners to upper-intermediate (A1 – B2+).</p>
+                        
+                    </div>
+                    <div class="qa-item">
+                        
+                        <h3>Location</h3>
+                        
+                        
+                        <p>In person in Vienna or online (e.g. Google Meet or MS Teams).</p>
+                        
+                    </div>
+                    <div class="qa-item">
+                        
+                        <h3>Explanations in Polish</h3>
+                        
+                        
+                        <p>For Polish speakers: explanations in Polish, lessons in German.</p>
+                        
+                    </div>
+                    <div class="qa-item">
+                        
+                        <h3>Exams</h3>
+                        
+                        
+                        <p>Preparation for ÖIF and ÖSD exams. No guarantee of passing.</p>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Für wen? Section -->
         <section class="section" id="wer">
             <div class="container">
@@ -407,6 +458,11 @@
                         </div>
                     </details>
                 </div>
+                <div class="hero-cta price-cta">
+                    
+                    <a href="#kontakt" class="btn btn-primary">Book a free consultation</a>
+                    
+                </div>
             </div>
         </section>
 
@@ -517,6 +573,13 @@
                         </div>
                     </div>
                     <div class="contact-form">
+                        
+                        <p class="form-hint">
+                            <strong>What helps me?</strong> Briefly tell me what you would like to learn
+                            (e.g. “German for work” or “ÖIF A2”). Level and goal are optional — a short
+                            message is all I need.
+                        </p>
+                        
                         <form action="https://formspree.io/f/xqeeogvv" method="POST" novalidate>
                             <div class="form-group">
                                 
@@ -529,6 +592,52 @@
                                 <label for="email">Email</label>
                                 
                                 <input type="email" id="email" name="email" required />
+                            </div>
+                            <div class="form-group">
+                                
+                                <label for="level">Your level (optional)</label>
+                                
+                                <select id="level" name="level">
+                                    
+                                    <option value="">— Please select —</option>
+                                    
+                                    <option value="A1">A1</option>
+                                    <option value="A2">A2</option>
+                                    <option value="B1">B1</option>
+                                    <option value="B2">B2</option>
+                                    <option value="B2+">B2+</option>
+                                    
+                                    <option value="unsure">Not sure</option>
+                                    
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                
+                                <label for="goal">Your goal (optional)</label>
+                                
+                                <select id="goal" name="goal">
+                                    
+                                    <option value="">— Please select —</option>
+                                    
+                                    
+                                    <option value="alltag">Everyday life</option>
+                                    
+                                    
+                                    <option value="arbeit">Work</option>
+                                    
+                                    
+                                    <option value="schule">School</option>
+                                    
+                                    
+                                    <option value="oefif">ÖIF exam</option>
+                                    
+                                    
+                                    <option value="oesd">ÖSD exam</option>
+                                    
+                                    
+                                    <option value="konversation">Conversation</option>
+                                    
+                                </select>
                             </div>
                             <div class="form-group">
                                 
@@ -547,6 +656,11 @@
                                 <label for="website">Website</label>
                                 <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
                             </div>
+                            <input type="hidden" name="utm_source" value="" />
+                            <input type="hidden" name="utm_medium" value="" />
+                            <input type="hidden" name="utm_campaign" value="" />
+                            <input type="hidden" name="utm_content" value="" />
+                            <input type="hidden" name="landing_page" value="" />
                             
                             <button type="submit" class="btn btn-primary" data-label="Send message" data-loading="Sending...">
                                 Send message
