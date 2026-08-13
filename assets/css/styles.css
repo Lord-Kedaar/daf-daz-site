@@ -45,8 +45,10 @@
     --color-text-muted: hsl(var(--hue-primary), 20%, 40%);
     --color-text-contrast: #ffffff;
 
-    --color-accent-main: hsl(var(--hue-accent), 80%, 55%);
-    --color-accent-hover: hsl(var(--hue-accent), 85%, 45%);
+    --color-accent-main: hsl(var(--hue-accent), 80%, 40%);
+    --color-accent-hover: hsl(var(--hue-accent), 85%, 35%);
+    /* Text on accent backgrounds — white on the darkened light-mode accent (6.05:1). */
+    --color-accent-contrast: #ffffff;
 
     --color-border: hsl(var(--hue-primary), 20%, 90%);
 
@@ -108,6 +110,8 @@
     --color-accent-main: hsl(35, 90%, 60%);
     /* Gold/Orange for dark mode */
     --color-accent-hover: hsl(35, 90%, 50%);
+    /* Dark text on gold keeps the dark-theme accent while passing 4.5:1 (9.3:1 on main). */
+    --color-accent-contrast: #1a1206;
 
     --color-border: hsl(var(--hue-primary), 25%, 25%);
 
@@ -219,14 +223,14 @@ ul {
 
 .btn-primary {
     background-color: var(--color-accent-main);
-    color: var(--color-text-contrast);
+    color: var(--color-accent-contrast);
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
     /* Colored shadow could be nice, keeping neutral for now */
 }
 
 .btn-primary:hover {
     background-color: var(--color-accent-hover);
-    color: var(--color-text-contrast);
+    color: var(--color-accent-contrast);
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
@@ -306,7 +310,7 @@ ul {
 
 .nav-link.cta {
     background-color: var(--color-accent-main);
-    color: white;
+    color: var(--color-accent-contrast);
     padding: 0.5rem 1.25rem;
     border-radius: 50px;
 }
@@ -903,7 +907,7 @@ ul {
 
 .local-notice__btn {
     background-color: var(--color-accent-main);
-    color: white;
+    color: var(--color-accent-contrast);
     border: none;
     padding: 0.5rem 1rem;
     border-radius: var(--border-radius-sm);

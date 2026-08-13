@@ -298,8 +298,9 @@ class BodyFilter(html.parser.HTMLParser):
             url = PAGE_URLS[self.page][l]
             active = " active" if l == self.lang else ""
             cur = ' aria-current="true"' if l == self.lang else ""
+            # Accessible name must match the visible text (a11y label-content-name-mismatch fix).
             links.append(
-                f'<a class="lang-btn{active}" href="{url}" aria-label="{LANG_NAME[l]}"{cur}>{LANG_LABEL[l]}</a>'
+                f'<a class="lang-btn{active}" href="{url}" aria-label="{LANG_LABEL[l]}"{cur}>{LANG_LABEL[l]}</a>'
             )
         return "".join(links)
 
