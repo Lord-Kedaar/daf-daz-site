@@ -28,6 +28,16 @@ LANGS = ("de", "pl", "en")
 LANG_LABEL = {"de": "DE", "pl": "PL", "en": "EN"}
 LANG_NAME = {"de": "Deutsch", "pl": "Polski", "en": "English"}
 MOBILE_LABEL = {"de": "Menü öffnen", "en": "Open menu", "pl": "Otwórz menu"}
+THEME_LABEL = {
+    "de": "Dunkelmodus umschalten",
+    "en": "Toggle dark mode",
+    "pl": "Przełącz tryb ciemny",
+}
+OG_ALT_TEXT = {
+    "de": "Radosław Pleskot — Deutschunterricht in Wien",
+    "en": "Radosław Pleskot — private German lessons in Vienna",
+    "pl": "Radosław Pleskot — indywidualny niemiecki w Wiedniu",
+}
 
 # Void elements never have end tags — must not affect nesting counters.
 VOID_ELEMENTS = {"area", "base", "br", "col", "embed", "hr", "img", "input",
@@ -240,7 +250,7 @@ def make_head(lang, page):
 {alt_locales}    <meta property="og:image" content="{OG_IMAGE}" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Radosław Pleskot — Deutschunterricht in Wien" />
+    <meta property="og:image:alt" content="{OG_ALT_TEXT[lang]}" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -437,6 +447,8 @@ class BodyFilter(html.parser.HTMLParser):
             a["src"] = self.rewrite_src(a["src"])
         if tag == "button" and "mobile-toggle" in (a.get("class") or "").split():
             a["aria-label"] = MOBILE_LABEL[self.lang]
+        if tag == "button" and a.get("id") == "themeToggle":
+            a["aria-label"] = THEME_LABEL[self.lang]
         self.out.append(render_tag(tag, a, selfclosing))
 
 
@@ -504,7 +516,7 @@ def make_landing_head(slug, cfg):
     <meta property="og:image" content="{OG_IMAGE}" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Radosław Pleskot — Deutschunterricht in Wien" />
+    <meta property="og:image:alt" content="{OG_ALT_TEXT[lang]}" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />

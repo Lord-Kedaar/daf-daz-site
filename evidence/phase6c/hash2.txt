@@ -1,0 +1,14 @@
+77b77d54a8ddf155f16cef1086a591da8de274cc  ./404.html
+92c1caf06e8c8976a8c9b9705124c1934bda7ace  ./deutsch-fuer-polnischsprachige-wien/index.html
+c23c4445c500264d128020639ad9d7af70ff1e3d  ./deutsch-privatunterricht-wien/index.html
+848ca7be379c444ed2cf96ba7c02d5c90403d2be  ./en/index.html
+6984a89e1f0c5415e9896d19e5a8e7f1a96ef6e6  ./en/legal/imprint.html
+8acf1dd5019026faeb1ab123f107586b301cce72  ./en/legal/privacy.html
+39741672cbbb75f61be25ab0d3f46e849dd24c32  ./index.html
+21d5231b4388cfaf7faf7fce32b3efeb1110d8d8  ./legal/imprint.html
+899f3d1e8cf80ee107672ef23be9a441eba619f5  ./legal/privacy.html
+34c763f4fd2ba0d284af44b08ce52deb3691f514  ./pl/index.html
+b417d970656f01e791cfbd4a127b4b16a8ddfcaf  ./pl/legal/imprint.html
+70d63919eca77fe849044a36c67c48a0d40600a0  ./pl/legal/privacy.html
+9aa2339501365fb6ec24060d029fa1b709b356c2  ./pl/niemiecki-dla-polakow-wieden/index.html
+cce44907c4a92104911dad17b0c3e70644dca1ce  ./pl/przygotowanie-oeif-oesd-wieden/index.html

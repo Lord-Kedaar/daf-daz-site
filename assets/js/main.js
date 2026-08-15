@@ -31,7 +31,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const htmlElement = document.documentElement;
     const themeToggle = document.getElementById('themeToggle');
 
-    (function highlightCurrentLang() {
+    // Landing pages and legal pages carry a static aria-current in the HTML;
+    // only fall back to path-based highlighting when no static marker exists.
+    const hasStaticActive = Array.from(langBtns).some(btn => btn.getAttribute('aria-current') === 'true');
+    if (!hasStaticActive) {
         const path = window.location.pathname;
         const langMap = { '/pl/': 'pl', '/en/': 'en' };
         const current = langMap[path] || (path.startsWith('/pl') ? 'pl' : path.startsWith('/en') ? 'en' : 'de');
@@ -42,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
             );
             btn.classList.toggle('active', !!matches);
         });
-    })();
+    }
 
     // ============================================
     // THEME TOGGLE
@@ -90,22 +93,67 @@ document.addEventListener('DOMContentLoaded', () => {
     // Reads UTM parameters from the URL and copies them into the hidden form
     // fields. No cookies, no external trackers, no storage. If the URL has no
     // UTM parameters, the fields stay empty and the form still works.
+    //
+    // Landing pages have no form of their own: their CTAs point to the
+    // homepage contact section (e.g. "/#kontakt"). To keep attribution across
+    // the landing -> CTA -> form journey, UTM parameters present on the
+    // landing URL are appended to every internal CTA link (before the hash),
+    // and the original landing path is carried as "landing_page". The form
+    // page then reads both from its own URL — still no cookies, no storage.
     const utmFields = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'landing_page'];
     const urlParams = new URLSearchParams(window.location.search);
     const utmForm = document.querySelector('.contact-form form');
+
+    const utmValues = {};
+    utmFields.forEach(name => {
+        if (name === 'landing_page') {
+            // If a landing_page parameter was forwarded from a landing page
+            // (landing -> CTA -> form journey), keep the ORIGINAL landing URL.
+            // Otherwise fall back to the current page.
+            utmValues[name] = urlParams.get('landing_page') || (window.location.pathname + window.location.search);
+        } else {
+            const value = urlParams.get(name);
+            if (value) {
+                utmValues[name] = value;
+            }
+        }
+    });
+
+    // Propagate UTM params to internal CTA links (same-origin, hash targets).
+    // Only parameters actually present in the URL are forwarded. landing_page
+    // is propagated only on non-index pages (landing/legal), where it carries
+    // the original landing URL; on index pages it would be self-referential
+    // noise ("/") and is left out.
+    const isIndexPage = ['/', '/pl/', '/en/'].includes(window.location.pathname);
+    const presentParams = utmFields.filter(name => utmValues[name] && (name !== 'landing_page' || !isIndexPage));
+    if (presentParams.length > 0) {
+        const query = presentParams.map(name => `${name}=${encodeURIComponent(utmValues[name])}`).join('&');
+        document.querySelectorAll('a[href]').forEach(link => {
+            const href = link.getAttribute('href');
+            if (!href || href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:')) {
+                return;
+            }
+            const hashIndex = href.indexOf('#');
+            const pathPart = hashIndex === -1 ? href : href.slice(0, hashIndex);
+            const hashPart = hashIndex === -1 ? '' : href.slice(hashIndex);
+            if (pathPart === '') {
+                return; // pure same-page anchor — no navigation, leave untouched
+            }
+            if (pathPart.includes('?')) {
+                return; // already has a query string — leave untouched
+            }
+            link.setAttribute('href', pathPart + '?' + query + hashPart);
+        });
+    }
+
     if (utmForm) {
         utmFields.forEach(name => {
             const field = utmForm.querySelector(`input[name="${name}"]`);
             if (!field) {
                 return;
             }
-            if (name === 'landing_page') {
-                field.value = window.location.pathname + window.location.search;
-            } else {
-                const value = urlParams.get(name);
-                if (value) {
-                    field.value = value;
-                }
+            if (utmValues[name]) {
+                field.value = utmValues[name];
             }
         });
     }
