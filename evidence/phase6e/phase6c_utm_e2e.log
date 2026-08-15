@@ -1,0 +1,46 @@
+=== COMMAND ===
+node scripts/phase6c_utm_e2e.mjs 
+=== ENV ===
+node: v22.22.3
+python3: Python 3.9.6
+chrome: "Browser": "Chrome/151.0.7922.138"
+cwd: /Users/radek/PROJECTS/daf-daz-site
+date: 2026-08-16 01:06:53 +0200
+=== STDOUT+STDERR ===
+PASS  [DE privat] CTA hrefs carry UTM query — rewritten=6/6 sample="/?utm_source=facebook&utm_medium=cpc&utm_campaign=phase6c&utm_content=hero&landing_page=%2Fdeutsch-privatunterricht-wien%2F%3Futm_source%3Dfacebook%26utm_medium%3Dcpc%26utm_campaign%3Dphase6c%26utm_content%3Dhero#kontakt"
+PASS  [DE privat] form reached on homepage — path=/
+PASS  [DE privat] utm_source survives — utm_source="facebook"
+PASS  [DE privat] utm_medium survives — utm_medium="cpc"
+PASS  [DE privat] utm_campaign survives — utm_campaign="phase6c"
+PASS  [DE privat] utm_content survives — utm_content="hero"
+PASS  [DE privat] original landing_page survives — landing_page="/deutsch-privatunterricht-wien/?utm_source=facebook&utm_medium=cpc&utm_campaign=phase6c&utm_content=hero"
+PASS  [DE für Polnischsprachige] CTA hrefs carry UTM query — rewritten=6/6 sample="/?utm_source=facebook&utm_medium=cpc&utm_campaign=phase6c&utm_content=hero&landing_page=%2Fdeutsch-fuer-polnischsprachige-wien%2F%3Futm_source%3Dfacebook%26utm_medium%3Dcpc%26utm_campaign%3Dphase6c%26utm_content%3Dhero#kontakt"
+PASS  [DE für Polnischsprachige] form reached on homepage — path=/
+PASS  [DE für Polnischsprachige] utm_source survives — utm_source="facebook"
+PASS  [DE für Polnischsprachige] utm_medium survives — utm_medium="cpc"
+PASS  [DE für Polnischsprachige] utm_campaign survives — utm_campaign="phase6c"
+PASS  [DE für Polnischsprachige] utm_content survives — utm_content="hero"
+PASS  [DE für Polnischsprachige] original landing_page survives — landing_page="/deutsch-fuer-polnischsprachige-wien/?utm_source=facebook&utm_medium=cpc&utm_campaign=phase6c&utm_content=hero"
+PASS  [PL niemiecki dla Polaków] CTA hrefs carry UTM query — rewritten=6/6 sample="/pl/?utm_source=facebook&utm_medium=cpc&utm_campaign=phase6c&utm_content=hero&landing_page=%2Fpl%2Fniemiecki-dla-polakow-wieden%2F%3Futm_source%3Dfacebook%26utm_medium%3Dcpc%26utm_campaign%3Dphase6c%26utm_content%3Dhero#kontakt"
+PASS  [PL niemiecki dla Polaków] form reached on homepage — path=/pl/
+PASS  [PL niemiecki dla Polaków] utm_source survives — utm_source="facebook"
+PASS  [PL niemiecki dla Polaków] utm_medium survives — utm_medium="cpc"
+PASS  [PL niemiecki dla Polaków] utm_campaign survives — utm_campaign="phase6c"
+PASS  [PL niemiecki dla Polaków] utm_content survives — utm_content="hero"
+PASS  [PL niemiecki dla Polaków] original landing_page survives — landing_page="/pl/niemiecki-dla-polakow-wieden/?utm_source=facebook&utm_medium=cpc&utm_campaign=phase6c&utm_content=hero"
+PASS  [PL ÖIF/ÖSD] CTA hrefs carry UTM query — rewritten=6/6 sample="/pl/?utm_source=facebook&utm_medium=cpc&utm_campaign=phase6c&utm_content=hero&landing_page=%2Fpl%2Fprzygotowanie-oeif-oesd-wieden%2F%3Futm_source%3Dfacebook%26utm_medium%3Dcpc%26utm_campaign%3Dphase6c%26utm_content%3Dhero#kontakt"
+PASS  [PL ÖIF/ÖSD] form reached on homepage — path=/pl/
+PASS  [PL ÖIF/ÖSD] utm_source survives — utm_source="facebook"
+PASS  [PL ÖIF/ÖSD] utm_medium survives — utm_medium="cpc"
+PASS  [PL ÖIF/ÖSD] utm_campaign survives — utm_campaign="phase6c"
+PASS  [PL ÖIF/ÖSD] utm_content survives — utm_content="hero"
+PASS  [PL ÖIF/ÖSD] original landing_page survives — landing_page="/pl/przygotowanie-oeif-oesd-wieden/?utm_source=facebook&utm_medium=cpc&utm_campaign=phase6c&utm_content=hero"
+PASS  fail-safe: no utm_* params in CTA hrefs without UTM — sample="/?landing_page=%2Fdeutsch-privatunterricht-wien%2F#kontakt"
+PASS  index: UTM captured from URL — utm_source="google"
+PASS  index: landing_page = current page — landing_page="/?utm_source=google&utm_medium=cpc&utm_campaign=index"
+PASS  index: no landing_page noise in links — polluted=0
+PASS  privacy: no cookies set — cookies=""
+PASS  privacy: no UTM data in localStorage — storageKeys=[]
+
+34/34 checks passed
+=== EXIT CODE: 0 ===

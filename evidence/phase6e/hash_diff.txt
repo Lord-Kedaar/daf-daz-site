@@ -1,0 +1,1 @@
+hash_diff exit=0 (0 = identical)

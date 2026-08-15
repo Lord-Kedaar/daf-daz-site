@@ -1,0 +1,25 @@
+=== COMMAND ===
+python3 build.py 
+=== ENV ===
+node: v22.22.3
+python3: Python 3.9.6
+chrome: "Browser": "Chrome/151.0.7922.138"
+cwd: /Users/radek/PROJECTS/daf-daz-site
+date: 2026-08-16 01:06:12 +0200
+=== STDOUT+STDERR ===
+build.py — base: https://daf-daz.radoslaw-pleskot.com
+  wrote index.html (34201 bytes)
+  wrote legal/imprint.html (11595 bytes)
+  wrote legal/privacy.html (15578 bytes)
+  wrote pl/index.html (34855 bytes)
+  wrote pl/legal/imprint.html (10520 bytes)
+  wrote pl/legal/privacy.html (13631 bytes)
+  wrote en/index.html (33794 bytes)
+  wrote en/legal/imprint.html (10421 bytes)
+  wrote en/legal/privacy.html (13901 bytes)
+  wrote deutsch-privatunterricht-wien/index.html (20562 bytes)
+  wrote deutsch-fuer-polnischsprachige-wien/index.html (23337 bytes)
+  wrote pl/niemiecki-dla-polakow-wieden/index.html (22794 bytes)
+  wrote pl/przygotowanie-oeif-oesd-wieden/index.html (22795 bytes)
+done.
+=== EXIT CODE: 0 ===

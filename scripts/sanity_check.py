@@ -86,8 +86,8 @@ def check_html(path, root):
     canon = re.findall(r'<link rel="canonical" href="([^"]+)"', src)
     if len(canon) != 1:
         err(path, f"canonical count != 1 ({len(canon)})")
-    elif not canon[0].startswith(BASE):
-        err(path, f"canonical not absolute self-referencing: {canon[0]}")
+    elif canon[0] != BASE + path:
+        err(path, f"canonical not exact self-referencing: {canon[0]} (want {BASE + path})")
     h1s = re.findall(r"<h1[^>]*>", src)
     if len(h1s) != 1:
         err(path, f"H1 count != 1 ({len(h1s)})")
@@ -162,6 +162,15 @@ def check_sitemap(root):
     if not locs:
         err("sitemap.xml", "no <loc> entries")
         return
+    if len(locs) != len(set(locs)):
+        err("sitemap.xml", f"duplicate <loc> entries ({len(locs)} total, {len(set(locs))} unique)")
+    if set(locs) != {BASE + u for u in INDEXABLE}:
+        missing = sorted({BASE + u for u in INDEXABLE} - set(locs))
+        extra = sorted(set(locs) - {BASE + u for u in INDEXABLE})
+        if missing:
+            err("sitemap.xml", f"missing canonical URLs: {missing}")
+        if extra:
+            err("sitemap.xml", f"unexpected URLs in sitemap: {extra}")
     for loc in locs:
         if not loc.startswith(BASE):
             err("sitemap.xml", f"loc not under subdomain: {loc}")

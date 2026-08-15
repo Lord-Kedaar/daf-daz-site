@@ -37,9 +37,11 @@
 - Wniosek: **`origin/main` (0d14ed3) NIE jest punktem rollbacku sprzed SEO.** Ostatni commit sprzed faz SEO: **`c957dda`** ("Use hero image for link preview", 2026-08-13 20:27:43 +0200, clone).
 
 **FIX — aktualny, możliwy do odtworzenia lokalny rollback:**
-- **Rollback Phase 6C (ta remediacja):** commit lokalny `SEO Phase 6C: Mordax remediation` (SHA w sekcji 4) → `git reset --hard <SHA-6C>` przywraca dokładnie stan po remediacji; `git checkout -- <pliki>` + `python3 build.py` cofa zmiany w working tree.
+- **Odtwórz stan PO remediacji Phase 6C (ta remediacja):** commit lokalny `SEO Phase 6C: Mordax remediation` = **`0523456403ad2680e807d76ec68a7a5b181be049`** (skrót `0523456`). `git reset --hard 0523456` przywraca dokładnie stan z remediacją (NIE cofa Phase 6C — patrz niżej). `git checkout -- <pliki>` + `python3 build.py` cofa zmiany w working tree.
+- **Cofnij Phase 6C (usuń remediację):** bezpieczny `git revert 0523456` (tworzy nowy commit odwracający zmiany 6C, historia nietknięta) ALBO jawny lokalny powrót do rodzica `0d14ed3` (`git reset --hard 0d14ed3`) — **wyłącznie po zabezpieczeniu dirty tree** (patrz „Warunki bezpieczeństwa” niżej). `git reset --hard 0d14ed3` NIE jest powrotem sprzed SEO — to stan PO Phase 5, PRZED remediacją 6C.
 - **Rollback do stanu sprzed SEO (c957dda):** `git checkout c957dda -- .` (working tree do pre-SEO, commity i origin/main nietknięte) — NIE używać `git reset --hard origin/main` (cofnąłby do 0d14ed3, czyli stanu PO SEO) i NIE stosować blanket `git clean` (w drzewie są artefakty QA/raporty, które trzeba zachować).
 - **Rollback selektywny:** `git revert` poszczególnych commitów SEO (d929a75…0d14ed3) w odwrotnej kolejności.
+- **Zakaz:** żaden reset/push/force-push zdalnego repo (`origin`) nie jest dozwolony bez jawnego approval Radosława/Zołzy. Wszystkie powyższe operacje są lokalne.
 
 ### F3 [MEDIUM] — claims PASS vs rzeczywiste pokrycie testów; trwałe evidence
 
@@ -86,17 +88,19 @@
 - **Working tree:** 25 modified + untracked (raporty QA, skrypty, evidence). Klasyfikacja:
   - zmiany Phase 6C (ta remediacja): `assets/js/main.js`, `build.py`, `_src/landings/*.html` (4), `_src/legal/privacy.html`, wygenerowane strony (13), `scripts/phase6c_utm_e2e.mjs` (nowy), `evidence/phase6c/*` (nowe), `SEO_PHASE6_QA_REPORT.md` (korekta claims), `SEO_PHASE6C_REMEDIATION_REPORT.md` (nowy);
   - zmiany z faz 1–6A (poprzednie taski, niezacommitowane w workspace): `GSC_MEASUREMENT_PREP.md`, `SEO_PHASE1_TECHNICAL_REPORT.md`, `SEO_PHASE2_CONTENT_ARCHITECTURE.md`, `_src/index.html`, `assets/css/styles.css`, raporty `SEO_PHASE3_*`, `SEO_PHASE6_MORDAX_REVIEW.md`, `MORDAX_SEO_PHASE6_REVIEW.md`, `SEO_PRE_DEPLOY_GATE.md`, skrypty `scripts/cdp_*.mjs`, `check_links_phase2.py`, `check_phase2_meta.py`, `phase3_verify.mjs`, `phase6a_*.py/mjs`.
-- **Commit lokalny Phase 6C:** wykonany (SHA w sekcji 4) — **bez push**.
+- **Commit lokalny Phase 6C:** wykonany — **`0523456403ad2680e807d76ec68a7a5b181be049`** (`0523456`, „SEO Phase 6C: Mordax remediation”, 2026-08-16 00:55:02 +0200) — **bez push**.
 - **Deployment:** niepotwierdzony; czy GitHub Pages zbudował po pushu 23:45 — HUMAN_REQUIRED.
 
 ## 3. Rollback plan (aktualny)
 
 | Cel | Komenda | Uwagi |
 |-----|---------|-------|
-| Cofnij Phase 6C | `git reset --hard <SHA-6C>` | przywraca stan po remediacji |
+| Odtwórz stan PO remediacji 6C | `git reset --hard 0523456` | przywraca stan z remediacją (NIE cofa 6C) |
+| Cofnij Phase 6C (usuń remediację) | `git revert 0523456` (bezpieczny) albo `git reset --hard 0d14ed3` | reset tylko po zabezpieczeniu dirty tree; 0d14ed3 = stan PO Phase 5, PRZED 6C |
 | Cofnij working tree do HEAD | `git checkout -- .` + `python3 build.py` | traci zmiany 6C i faz 1–6A w tree |
 | Stan sprzed SEO | `git checkout c957dda -- .` | commity/origin nietknięte; NIE `reset --hard origin/main` |
 | Selektywnie | `git revert d929a75..0d14ed3` (odwrotnie) | per-faza |
+| Zdalne repo | **ZAKAZ bez jawnego approval** | żaden reset/push/force-push `origin` |
 
 ## 4. Build / testy / preview
 
@@ -126,6 +130,6 @@
 - **files_changed:** assets/js/main.js, build.py, _src/landings/*.html (4), _src/legal/privacy.html, 13 wygenerowanych stron, scripts/phase6c_utm_e2e.mjs (nowy), evidence/phase6c/* (nowe), SEO_PHASE6_QA_REPORT.md, SEO_PHASE6C_REMEDIATION_REPORT.md (nowy)
 - **verification:** build idempotentny; sanity 13/13; UTM E2E 34/34; phase3 12/12; phase6a 36/36; HTML sanity 14/14; links 0 broken; meta 4/4; UTM logic 5/5; preview HTTP 200; 0 cookies / 0 UTM w localStorage
 - **evidence:** evidence/phase6c/{build1,build2}.log, {hash1,hash2}.txt; logi testów w sekcji 4
-- **rollback_path:** git reset --hard <SHA-6C>; pre-SEO: git checkout c957dda -- . (NIE origin/main)
+- **rollback_path:** odtwórz stan po 6C: `git reset --hard 0523456`; cofnij 6C: `git revert 0523456` albo `git reset --hard 0d14ed3` (po zabezpieczeniu dirty tree); pre-SEO: `git checkout c957dda -- .` (NIE origin/main); zdalne reset/push ZAKAZANE bez jawnego approval
 - **risks:** LCP 3.7 s (Needs Improvement); push 23:45 z innej sesji — deployment niepotwierdzony; privacy copy czeka na akceptację prawną
 - **next_action:** re-review Mordaxa (po HUMAN_REQUIRED #1–2); potem ewentualny deploy za zgodą Radosława

@@ -1,0 +1,48 @@
+=== COMMAND ===
+node scripts/phase6a_qa.mjs 
+=== ENV ===
+node: v22.22.3
+python3: Python 3.9.6
+chrome: "Browser": "Chrome/151.0.7922.138"
+cwd: /Users/radek/PROJECTS/daf-daz-site
+date: 2026-08-16 01:06:19 +0200
+=== STDOUT+STDERR ===
+PASS  mobile overflow: / — scrollW=390 vw=390
+PASS  mobile overflow: /pl/ — scrollW=390 vw=390
+PASS  mobile overflow: /en/ — scrollW=390 vw=390
+PASS  mobile overflow: /legal/imprint.html — scrollW=390 vw=390
+PASS  mobile overflow: /legal/privacy.html — scrollW=390 vw=390
+PASS  mobile overflow: /pl/legal/imprint.html — scrollW=390 vw=390
+PASS  mobile overflow: /pl/legal/privacy.html — scrollW=390 vw=390
+PASS  mobile overflow: /en/legal/imprint.html — scrollW=390 vw=390
+PASS  mobile overflow: /en/legal/privacy.html — scrollW=390 vw=390
+PASS  mobile overflow: /deutsch-privatunterricht-wien/ — scrollW=390 vw=390
+PASS  mobile overflow: /deutsch-fuer-polnischsprachige-wien/ — scrollW=390 vw=390
+PASS  mobile overflow: /pl/niemiecki-dla-polakow-wieden/ — scrollW=390 vw=390
+PASS  mobile overflow: /pl/przygotowanie-oeif-oesd-wieden/ — scrollW=390 vw=390
+PASS  mobile overflow: /404.html — scrollW=390 vw=390
+PASS  desktop overflow: / — scrollW=1440 vw=1440
+PASS  desktop overflow: /pl/ — scrollW=1440 vw=1440
+PASS  desktop overflow: /en/ — scrollW=1440 vw=1440
+PASS  desktop overflow: /legal/imprint.html — scrollW=1440 vw=1440
+PASS  desktop overflow: /legal/privacy.html — scrollW=1440 vw=1440
+PASS  desktop overflow: /pl/legal/imprint.html — scrollW=1425 vw=1440
+PASS  desktop overflow: /pl/legal/privacy.html — scrollW=1425 vw=1440
+PASS  desktop overflow: /en/legal/imprint.html — scrollW=1425 vw=1440
+PASS  desktop overflow: /en/legal/privacy.html — scrollW=1425 vw=1440
+PASS  desktop overflow: /deutsch-privatunterricht-wien/ — scrollW=1425 vw=1440
+PASS  desktop overflow: /deutsch-fuer-polnischsprachige-wien/ — scrollW=1425 vw=1440
+PASS  desktop overflow: /pl/niemiecki-dla-polakow-wieden/ — scrollW=1425 vw=1440
+PASS  desktop overflow: /pl/przygotowanie-oeif-oesd-wieden/ — scrollW=1425 vw=1440
+PASS  desktop overflow: /404.html — scrollW=1440 vw=1440
+PASS  form controls focusable: / — 14 controls OK
+PASS  form controls focusable: /pl/ — 14 controls OK
+PASS  form controls focusable: /en/ — 14 controls OK
+PASS  form controls focusable: /deutsch-privatunterricht-wien/ — no form on page (N/A)
+PASS  form controls focusable: /deutsch-fuer-polnischsprachige-wien/ — no form on page (N/A)
+PASS  form controls focusable: /pl/niemiecki-dla-polakow-wieden/ — no form on page (N/A)
+PASS  form controls focusable: /pl/przygotowanie-oeif-oesd-wieden/ — no form on page (N/A)
+PASS  a11y: hero CTA programmatically focusable — tabIndex=0
+
+36/36 checks passed
+=== EXIT CODE: 0 ===
