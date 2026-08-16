@@ -110,7 +110,7 @@ Runner: `bash scripts/run_phase6e_evidence.sh` — **12/12 kroków exit 0, OVERA
 
 ## 4. Rollback tego commita
 
-- **Cofnij ten commit (QA gate repair):** `git revert --no-edit 7d4463a` (bezpieczny) — po commicie.
+- **Cofnij ten commit (QA gate repair):** `git revert --no-edit 1c9b8fa` (bezpieczny) — po commicie.
 - **Przed commitem:** `git checkout -- scripts/run_phase6e_evidence.sh README.md SEO_PHASE6E_CLOSURE_REPORT.md SEO_PHASE6C_REMEDIATION_REPORT.md` + usunięcie `SEO_QA_GATE_REPAIR_REPORT.md` i odświeżonych artefaktów `evidence/phase6e/` (przywrócenie z commita 6083ad4).
 - **Pełna polityka rollbacku SEO:** patrz README.md sekcja Rollback (Krok 0 obowiązkowy; zdalne operacje ZAKAZ bez approval).
 
@@ -135,6 +135,6 @@ Runner: `bash scripts/run_phase6e_evidence.sh` — **12/12 kroków exit 0, OVERA
 - **files_changed:** scripts/run_phase6e_evidence.sh (M), README.md (M), SEO_PHASE6E_CLOSURE_REPORT.md (M), SEO_PHASE6C_REMEDIATION_REPORT.md (M), evidence/phase6e/* (14 artefaktów, w tym nowy preview.log), SEO_QA_GATE_REPAIR_REPORT.md (nowy)
 - **verification:** 12/12 kroków exit 0 (build×2, idempotencja, sanity, meta, links, html_sanity, utm_logic, phase3, phase6a, utm_e2e, preview 8×200); test negatywny fail-closed → exit 1; hashe w poprawnej kolejności (hash1 po build1, hash2 po build2, diff 0)
 - **evidence:** evidence/phase6e/{build1,build2,hash1,hash2,hash_diff,sanity,meta,links,html_sanity,utm_logic,phase3,phase6a,phase6c_utm_e2e,preview}.log/.txt
-- **rollback_path:** `git revert --no-edit 7d4463a`; pełna polityka w README (Krok 0 obowiązkowy; zdalne ZAKAZ bez approval)
+- **rollback_path:** `git revert --no-edit 1c9b8fa`; pełna polityka w README (Krok 0 obowiązkowy; zdalne ZAKAZ bez approval)
 - **risks:** LCP 3.7 s (Needs Improvement, nieblokujący, z Phase 6A); deployment po pushu 23:45 niepotwierdzony (NEEDS_HUMAN); dirty tree zawiera zmiany faz 1–6A (niezacommitowane, poza tym taskiem)
 - **next_action:** lokalny commit 6F (bez push); decyzje HUMAN_REQUIRED #1–5 przez Zołzę/Radosława
