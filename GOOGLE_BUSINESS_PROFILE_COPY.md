@@ -1,9 +1,10 @@
 # GOOGLE_BUSINESS_PROFILE_COPY.md
 
-> Dokument przygotowawczy — PHASE 4 (LOCAL SEO PREPARATION).
+> Dokument przygotowawczy — PHASE 4 (LOCAL SEO PREPARATION), aktualizacja 2026-08-16.
 > Status: **MATERIAŁ DO RĘCZNEGO WPROWADZENIA** — nic nie zostało opublikowane, żaden profil nie został utworzony ani zweryfikowany.
-> Wszystkie fakty o ofercie pochodzą wyłącznie z treści strony https://daf-daz.radoslaw-pleskot.com (stan: 2026-08-13, commit 267f42b).
+> Wszystkie fakty o ofercie pochodzą wyłącznie z treści strony https://daf-daz.radoslaw-pleskot.com (stan: 2026-08-16, commit 5371cfe).
 > Wszystkie nazwy kategorii/serwisów GBP są **rekomendacjami do weryfikacji w aktualnym UI** — oznaczono je `VERIFY_CURRENT_UI`.
+> **Weryfikację profilu wykonuje właściciel osobiście** (wymaga logowania do Google) — poza zakresem jakiejkolwiek automatyzacji.
 
 ---
 
@@ -18,6 +19,8 @@
 | Miasto / Service area | `Wien` | sekcja Kontakt: "Wien, Österreich" |
 | Adres (Address) | **NIE PODAWAĆ** — patrz §4 | brak adresu na stronie (świadomie) |
 
+> **Real-world name policy:** Google wymaga, aby nazwa profilu odzwierciedlała realną, weryfikowalną nazwę działalności — bez dopisków marketingowych, słów kluczowych, lokalizacji w nazwie ani znaków specjalnych. Nazwa `Radoslaw Pleskot – Deutschunterricht Wien` jest dopuszczalna jako nazwa jednoosobowej działalności edukacyjnej (imię i nazwisko + opis działalności), ale **nie dodawać** do nazwy: haseł, "Wien" jako osobnego członu marketingowego, emoji, ani wariantów typu "Best German Tutor". Jeśli Google odrzuci nazwę z myślnikiem, użyć wariantu `Radoslaw Pleskot Deutschunterricht` (`VERIFY_CURRENT_UI`).
+
 > Uwaga: nazwa w GBP może wymagać skrócenia do limitu znaków UI. Warianty do wyboru przy zakładaniu (jeden, spójny):
 > - `Radoslaw Pleskot – Deutschunterricht Wien`
 > - `Radoslaw Pleskot Deutschunterricht`
@@ -30,7 +33,7 @@
 > Limit znaków GBP: ~750 znaków (`VERIFY_CURRENT_UI`). Poniższy tekst mieści się w limicie; przed wklejeniem sprawdzić aktualny licznik w UI.
 
 ```
-Individueller Deutschunterricht in Wien — für Kinder, Jugendliche und Erwachsene (A1–C1).
+Individueller Deutschunterricht in Wien — für Kinder, Jugendliche und Erwachsene (A1–B2+).
 
 Ich unterrichte Einzelunterricht, abgestimmt auf Ihr Tempo und Ihre Ziele: Alltag, Beruf, Schule oder Prüfungsvorbereitung (ÖIF, ÖSD). Klar erklärt, ohne Druck — für Anfänger und Fortgeschrittene.
 
@@ -41,8 +44,8 @@ Kontakt: +43 681 101 502 83 · kontakt@radoslaw-pleskot.com · https://daf-daz.r
 
 Fakty potwierdzone na stronie (nie fabrykowane):
 - Einzelunterricht, vor Ort in Wien oder online — sekcja "Organisation" / landings.
-- Zielgruppen: Kinder, Jugendliche, Erwachsene; A1–C1 — meta description strony głównej.
-- Prüfungsvorbereitung ÖIF und ÖSD — sekcja "Prüfungen" (z adnotacją "Keine Garantie auf das Bestehen").
+- Zielgruppen: Kinder, Jugendliche, Erwachsene; A1–B2+ — meta description strony głównej.
+- Prüfungsvorbereitung ÖIF und ÖSD — sekcja "Prüfungen".
 - Kostenloses Erstgespräch — CTA hero.
 - Preise: vor Ort 30 €/45 Min (40 €/60 Min); online 21 €/45 Min (28 €/60 Min) — sekcja "Preise".
 
@@ -51,7 +54,7 @@ Fakty potwierdzone na stronie (nie fabrykowane):
 ## 3. Opis — wersja PL (krótka)
 
 ```
-Indywidualna nauka niemieckiego w Wiedniu — dla dzieci, młodzieży i dorosłych (A1–C1).
+Indywidualna nauka niemieckiego w Wiedniu — dla dzieci, młodzieży i dorosłych (A1–B2+).
 
 Lekcje indywidualne dopasowane do Twojego tempa i celów: codzienny język, praca, szkoła lub przygotowanie do egzaminów ÖIF i ÖSD. Stacjonarnie w Wiedniu lub online. Bezpłatna pierwsza konsultacja.
 
@@ -69,7 +72,7 @@ Kontakt: +43 681 101 502 83 · kontakt@radoslaw-pleskot.com · https://daf-daz.r
   1. strona celowo nie publikuje adresu domowego (w sekcji Kontakt jest tylko "Wien, Österreich");
   2. zajęcia odbywają się u ucznia / online / w miejscach publicznych — brak stałej lokalizacji przyjmującej klientów;
   3. pokazanie adresu domowego w GBP wiąże się z ryzykiem prywatności i wymogiem zgodności z Google (wizyty, godziny).
-- Jeśli Google wymaga adresu do weryfikacji (`VERIFY_CURRENT_UI`): rozważyć skrzynkę pocztową / adres biurowy, jeśli istnieje — **nie** używać adresu domowego. HUMAN_REQUIRED: decyzja właściciela.
+- **Nie używać do weryfikacji:** skrzynek pocztowych (PO box), wirtualnych biur ani adresów, pod którymi działalność faktycznie nie przyjmuje klientów — Google odrzuca takie adresy przy weryfikacji i może zablokować profil. Jeśli Google wymaga adresu do weryfikacji (`VERIFY_CURRENT_UI`), jedyną poprawną opcją jest adres, pod którym realnie odbywa się działalność (np. lokal, w którym prowadzone są zajęcia) — decyzja właściciela. HUMAN_REQUIRED: decyzja właściciela.
 
 ---
 
@@ -127,16 +130,29 @@ Dlaczego tak:
 
 ## 8. Co NIE zostało zrobione (zero side-effects)
 
-- Nie utworzono ani nie zweryfikowano profilu GBP.
+- Nie utworzono ani nie zweryfikowano profilu GBP — **weryfikację wykonuje właściciel osobiście** (wymaga logowania do Google).
 - Nie logowano się do Google / GSC / GBP.
 - Nie opublikowano nic w katalogach.
 - Nie wysłano żadnych próśb o opinię.
-- Nie zmieniono publicznej strony (dokument dodany lokalnie, commit lokalny — bez push/deploy).
+- Nie zmieniono publicznej strony (dokument zaktualizowany lokalnie; zmiany wejdą z najbliższym commitem SEO).
 
 ## HUMAN_REQUIRED (podsumowanie)
 
 1. Decyzja: czy profil GBP ma być bez adresu (rekomendacja) — potwierdzenie właściciela.
 2. Wybór kategorii w aktualnym UI GBP (lista może się różnić od kandydatur w §5).
 3. Decyzja o godzinach otwarcia ("by appointment" vs stałe godziny).
-4. Ręczne założenie i weryfikacja profilu (wymaga logowania do Google — poza zakresem tego zadania).
+4. **Ręczne założenie i weryfikacja profilu przez właściciela** (wymaga logowania do Google — poza zakresem automatyzacji).
 5. Potwierdzenie finalnej nazwy NAP (wariant z §1) i jej użycie we wszystkich miejscach.
+
+## Podział: automatyzowalne vs wymagające właściciela
+
+| Działanie | Kto | Status |
+|---|---|---|
+| Przygotowanie copy, NAP, URL z UTM, kategorie-kandydatki | Metricus (ten dokument) | GOTOWE |
+| Założenie profilu GBP | Właściciel (logowanie do Google) | HUMAN_REQUIRED |
+| Weryfikacja profilu (kod/wideorozmowa/pocztówka) | Właściciel osobiście | HUMAN_REQUIRED |
+| Wybór kategorii w UI | Właściciel | HUMAN_REQUIRED |
+| Decyzja o adresie / service area | Właściciel | HUMAN_REQUIRED |
+| Decyzja o godzinach | Właściciel | HUMAN_REQUIRED |
+| Zdjęcia profilu | Właściciel (materiał z urządzenia właściciela) | HUMAN_REQUIRED |
+| Odpowiadanie na opinie | Właściciel | HUMAN_REQUIRED |

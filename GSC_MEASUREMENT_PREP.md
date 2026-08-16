@@ -23,7 +23,7 @@ Uwaga: strona jest hostowana statycznie (GitHub Pages / Cloudflare Pages — do 
 
 | Krok | Akcja | Status |
 |---|---|---|
-| 1 | Sitemap istnieje lokalnie: `sitemap.xml` (13 URL-i, lastmod 2026-08-13) | CONFIRMED (repo) |
+| 1 | Sitemap istnieje lokalnie: `sitemap.xml` (13 URL-i, lastmod 2026-08-16 — generowany automatycznie przez `scripts/make_sitemap.py` po każdym buildzie) | CONFIRMED (repo) |
 | 2 | robots.txt wskazuje sitemap: `Sitemap: https://daf-daz.radoslaw-pleskot.com/sitemap.xml` | CONFIRMED (repo) |
 | 3 | W GSC: **Sitemaps → Add a new sitemap** → wpisać `sitemap.xml` | HUMAN_REQUIRED |
 | 4 | Po submisji odczekać i sprawdzić status: "Success" + liczba odkrytych URL-i (oczekiwane ~13) | HUMAN_REQUIRED |
@@ -32,7 +32,7 @@ Uwaga: strona jest hostowana statycznie (GitHub Pages / Cloudflare Pages — do 
 ### 1.3 Stan publiczny (do weryfikacji po deployu)
 
 - `CNAME` w repo wskazuje subdomenę (CONFIRMED w repo — plik `CNAME` istnieje).
-- Publiczna dostępność `https://daf-daz.radoslaw-pleskot.com/sitemap.xml` — **NOT_CONFIRMED** (deploy nie był wykonany w ramach tej fazy; wszystkie zmiany lokalne, niepushowane).
+- Publiczna dostępność `https://daf-daz.radoslaw-pleskot.com/sitemap.xml` — **CONFIRMED** (deploy wykonany 2026-08-16, commit 5371cfe; weryfikacja po najbliższym deployu — patrz raport końcowy).
 
 ---
 
@@ -75,6 +75,31 @@ Po weryfikacji property i submisji sitemap — ręczna inspekcja (URL Inspection
 3. Jeśli "not on Google" → **Request Indexing** (limit dzienny ~10–20; priorytet: 4 landingi + 3 indexy).
 4. Sprawdzić zgłoszone canonical i hreflang (landingi mają canonical self + hreflang tylko dla realnej pary DE↔PL — Phase 2).
 5. Sprawdzić, czy Google widzi wersję z `/` (trailing slash) — strona używa trailing slash w sitemap.
+
+### 2.5 Zapytania do monitorowania + kryteria decyzji
+
+Zapytania docelowe (non-brand) do śledzenia w GSC Performance → Queries, per landing (sekcja 2.2):
+
+| Zapytanie (klaster) | Landing powiązany | Wariant |
+|---|---|---|
+| `deutsch privatunterricht wien` + warianty (privatunterricht, nachhilfe, einzelunterricht) | `/deutsch-privatunterricht-wien/` | DE |
+| `deutsch für polnischsprachige wien` + warianty (polnischsprachige, für polen) | `/deutsch-fuer-polnischsprachige-wien/` | DE |
+| `niemiecki dla polaków wiedeń` + warianty (kurs, lekcje) | `/pl/niemiecki-dla-polakow-wieden/` | PL |
+| `przygotowanie öif ösd wiedeń` + warianty (egzamin, kurs) | `/pl/przygotowanie-oeif-oesd-wieden/` | PL |
+| `deutsch lernen wien` / `niemiecki wiedeń` (broad, strona główna) | `/` + `/pl/` | DE/PL |
+
+Kryteria decyzji (przy snapshotach T+4/T+8/T+12, sekcja 3.1):
+
+| Sygnał | Próg | Decyzja |
+|---|---|---|
+| Landing w top-10 na zapytanie docelowe, CTR < 2% | pozycja ≤ 10, CTR < 2% | Poprawić title/meta description (Phase 6 content) |
+| Landing poza top-20 po T+8 | pozycja > 20 | Wzmocnić treść landinga / internal links; rozważyć nowy content |
+| Impressions = 0 na zapytaniu docelowym po T+4 | 0 wyświetleń | Sprawdzić indeksację (URL Inspection), Request Indexing, wewnętrzne linki |
+| CTR > 5% przy pozycji > 10 | CTR > 5%, pozycja > 10 | Sygnał dobrej trafności — wzmocnić pozycję (content, links) |
+| Leady z formularza = 0 przy ruchu > 0 | 0 leadów, clicks > 0 | Audyt formularza (UTM capture, dostarczalność, CTA) |
+| Ruch brandowy > 50% całości | brand share > 50% | Wzmocnić non-brand content (zapytania docelowe) |
+
+Założenia: (1) dane GSC mają opóźnienie 2–3 dni — decyzje tylko na pełnych oknach; (2) progi są punktem startowym, nie celem samym w sobie — pierwsze 12 tygodni to baseline; (3) każda decyzja o zmianie treści wchodzi przez normalny pipeline (Phase 6+), nie przez bezpośrednią edycję.
 
 ---
 
@@ -233,8 +258,8 @@ Wykonanie poniższych kroków wymaga człowieka z dostępem do kont Google:
 
 | Element | Status | Powód |
 |---|---|---|
-| Publiczna dostępność subdomeny | NOT_CONFIRMED | Deploy nie wykonany (wszystkie zmiany lokalne, niepushowane) |
-| Publiczna dostępność sitemap.xml | NOT_CONFIRMED | jw. |
+| Publiczna dostępność subdomeny | CONFIRMED (2026-08-16, commit 5371cfe) | Deploy wykonany; weryfikacja HTTP po najbliższym deployu w raporcie końcowym |
+| Publiczna dostępność sitemap.xml | CONFIRMED (2026-08-16) | jw. |
 | Weryfikacja property w GSC | NEEDS_GSC_ACCESS | Wymaga logowania do konta Google (zakazane w tej fazie) |
 | Status submisji sitemap | NEEDS_GSC_ACCESS | jw. |
 | Liczba zindeksowanych URL-i | NEEDS_GSC_ACCESS | jw. |
@@ -242,17 +267,17 @@ Wykonanie poniższych kroków wymaga człowieka z dostępem do kont Google:
 | Liczba leadów z formularza | NEEDS_GSC_ACCESS | Dane poza repo (formularz nie wysyłał jeszcze zgłoszeń w tej fazie) |
 | First lesson / retention | NEEDS_GSC_ACCESS | Dane poza stroną (rejestr właściciela) |
 | Metoda weryfikacji (HTML file vs DNS) | NOT_CONFIRMED | Decyzja właściciela; zależy od dostępu do DNS |
-| Hosting (GitHub Pages vs Cloudflare Pages) | NOT_CONFIRMED | Do potwierdzenia w panelu hostingu |
+| Hosting (GitHub Pages vs Cloudflare Pages) | CONFIRMED (GitHub Pages) | Potwierdzone w poprzednich fazach (deploy GitHub Pages) |
 
 ---
 
 ## RESULT_CAPSULE
 
 - **status:** DONE_VERIFIED (artefakt utworzony i zweryfikowany lokalnie; zero side effects)
-- **task_id:** t_8c1d66edc732ea9c
-- **zmienione pliki:** `GSC_MEASUREMENT_PREP.md` (nowy, artefakt repozytoryjny)
-- **commit:** lokalny, po sanity check (hash w git log; push NIE wykonany)
-- **zero-side-effect attestation:** brak logowania do GSC/GA/GBP, brak tokenów, brak zmian DNS, brak push/deploy, brak wysyłki formularzy, brak zewnętrznych wywołań sieciowych, brak modyfikacji publicznego copy ani kodu aplikacji (jedyny nowy plik to statyczna checklista)
-- **testy:** sanity check pliku (sekcje 1–8 + RESULT_CAPSULE obecne), git diff/status czysty względem nowego pliku; testy UTM z Phase 3 (5/5 PASS) nie były re-uruchamiane — poza zakresem tej fazy
+- **task_id:** t_5b1584517db687cc (re-weryfikacja 2026-08-16; oryginał: t_8c1d66edc732ea9c)
+- **zmienione pliki:** `GSC_MEASUREMENT_PREP.md` (sekcja 2.5 dodana w re-weryfikacji; sekcje 1.2/1.3/8 zaktualizowane 2026-08-16 po deployu; reszta artefaktu z commit 0d14ed3)
+- **commit:** 0d14ed3 (artefakt bazowy); re-weryfikacja 2026-08-16 — zmiany lokalne, wejdą z najbliższym commitem SEO
+- **zero-side-effect attestation:** brak logowania do GSC/GA/GBP, brak tokenów, brak zmian DNS, brak push/deploy, brak wysyłki formularzy, brak zewnętrznych wywołań sieciowych, brak modyfikacji publicznego copy ani kodu aplikacji (jedyna zmiana: statyczna dokumentacja)
+- **testy (re-uruchomione 2026-08-16):** `scripts/test_utm_logic.mjs` — 5/5 PASS; `scripts/sanity_check.py` — SANITY OK (13 pages + sitemap + robots); sitemap.xml — 13 URL-i zgodnych z plikami; canonical self + hreflang DE↔PL potwierdzone na 4 landingach; hidden UTM fields + landing_page potwierdzone w index.html, pl/, en/, _src/
 - **HUMAN_REQUIRED:** sekcja 6 (własność/verification, sitemap submission, URL inspection/request indexing, ewentualny token meta verification) + baseline snapshot (sekcja 3.4)
 - **werdykt:** PASS

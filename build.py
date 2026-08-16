@@ -79,7 +79,7 @@ LANDING_PAGES = {
         "lang": "pl",
         "url": "/pl/przygotowanie-oeif-oesd-wieden/",
         "title": "Przygotowanie do egzaminów ÖIF i ÖSD w Wiedniu | Radosław Pleskot",
-        "description": "Realistyczne przygotowanie do egzaminów ÖIF i ÖSD w Wiedniu i online: formaty zadań, słownictwo, mówienie. Poziomy A1–B2+. Bez gwarancji egzaminacyjnych.",
+        "description": "Realistyczne przygotowanie do egzaminów ÖIF i ÖSD w Wiedniu i online: formaty zadań, słownictwo, mówienie. Poziomy A1–B2+.",
         "hreflang": None,
     },
 }

@@ -32,7 +32,7 @@
 
 - **Cel:** wiarygodny wpis instytucjonalny; wysoka wartość sygnału lokalnego.
 - **Warunek uprawnienia:** wpis w WKO przysługuje zarejestrowanym firmom/rzemiosłom w Austrii. Jeśli działalność jest zarejestrowana (Gewerbeschein) — wpis uprawniony; jeśli nie — **NIE** zakładać konta ani wpisu. `HUMAN_REQUIRED`: właściciel potwierdza status rejestracji.
-- **Dane do zachowania:** NAP z §1; opis zgodny z ofertą (Einzelunterricht, ÖIF/ÖSD, A1–C1, vor Ort/online).
+- **Dane do zachowania:** NAP z §1; opis zgodny z ofertą (Einzelunterricht, ÖIF/ÖSD, A1–B2+, vor Ort/online).
 - **Uwaga:** WKO to nie "katalog do SEO" — wpis ma sens tylko jako realny rejestr firmy. Bez rejestracji pomijamy tę pozycję.
 
 ### 2.2 Społeczności polonijne / wiedeńskie (grupy, fora, portale lokalne)
@@ -62,8 +62,8 @@
 ## 3. Zasady spójności (obowiązkowe przy każdym wpisie)
 
 1. **Nazwa, telefon, strona — identyczne** w każdym miejscu (zgodnie z §1).
-2. **Opis** — zawsze zgodny z potwierdzoną ofertą: Einzelunterricht, A1–C1, dzieci/młodzież/dorośli, ÖIF/ÖSD, vor Ort Wien + online, ceny (30 €/45 min vor Ort, 21 €/45 min online), bezpłatne pierwsze spotkanie.
-3. **Bez obietnic niemożliwych** — strona jawnie mówi "Keine Garantie auf das Bestehen" (brak gwarancji zdania egzaminu); ta sama zasada we wszystkich wpisach.
+2. **Opis** — zawsze zgodny z potwierdzoną ofertą: Einzelunterricht, A1–B2+, dzieci/młodzież/dorośli, ÖIF/ÖSD, vor Ort Wien + online, ceny (30 €/45 min vor Ort, 21 €/45 min online), bezpłatne pierwsze spotkanie.
+3. **Bez obietnic niemożliwych** — opis oferuje rzetelne przygotowanie do egzaminów, ale nie obiecuje zdania egzaminu; ta sama zasada we wszystkich wpisach.
 4. **Jeden wpis na miejsce** — bez duplikatów, bez aktualizacji co tydzień.
 5. **Każdy wpis weryfikowalny** — po dodaniu zapisać w tym pliku: data, miejsce, URL wpisu (jeśli publiczny), użyty wariant nazwy.
 
