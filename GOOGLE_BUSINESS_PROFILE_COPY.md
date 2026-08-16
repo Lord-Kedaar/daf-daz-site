@@ -12,18 +12,20 @@
 
 | Pole | Wartość | Źródło |
 |---|---|---|
-| Nazwa firmy (Name) | `Radoslaw Pleskot – Deutschunterricht Wien` | title strony: "Radoslaw Pleskot \| Deutschunterricht Wien" |
-| Telefon | `+43 681 101 502 83` | imprint.html (tel:+436810150283) |
+| Nazwa firmy (Name) | `Radosław Pleskot` (wariant ASCII: `Radoslaw Pleskot`) | imprint.html / JSON-LD Person: "Radosław Pleskot" |
+| Telefon | `+43 681 101 502 83` | imprint.html (tel:+436****0283) |
 | E-mail | `kontakt@radoslaw-pleskot.com` | imprint.html / sekcja Kontakt |
 | Strona WWW | `https://daf-daz.radoslaw-pleskot.com` | CNAME / sitemap.xml |
 | Miasto / Service area | `Wien` | sekcja Kontakt: "Wien, Österreich" |
 | Adres (Address) | **NIE PODAWAĆ** — patrz §4 | brak adresu na stronie (świadomie) |
 
-> **Real-world name policy:** Google wymaga, aby nazwa profilu odzwierciedlała realną, weryfikowalną nazwę działalności — bez dopisków marketingowych, słów kluczowych, lokalizacji w nazwie ani znaków specjalnych. Nazwa `Radoslaw Pleskot – Deutschunterricht Wien` jest dopuszczalna jako nazwa jednoosobowej działalności edukacyjnej (imię i nazwisko + opis działalności), ale **nie dodawać** do nazwy: haseł, "Wien" jako osobnego członu marketingowego, emoji, ani wariantów typu "Best German Tutor". Jeśli Google odrzuci nazwę z myślnikiem, użyć wariantu `Radoslaw Pleskot Deutschunterricht` (`VERIFY_CURRENT_UI`).
-
-> Uwaga: nazwa w GBP może wymagać skrócenia do limitu znaków UI. Warianty do wyboru przy zakładaniu (jeden, spójny):
-> - `Radoslaw Pleskot – Deutschunterricht Wien`
-> - `Radoslaw Pleskot Deutschunterricht`
+> **Real-world name policy (rekomendacja domyślna):** Google wymaga, aby nazwa profilu była dokładną, publicznie używaną nazwą działalności — bez dopisków marketingowych, słów kluczowych ani lokalizacji w nazwie. Domyślną rekomendacją jest **`Radosław Pleskot`** — dokładnie ta nazwa, pod którą właściciel występuje publicznie (imprint, JSON-LD Person, meta author). Opis usług (Deutschunterricht, DaF/DaZ) i lokalizację (Wien) umieszcza się w **odpowiednich polach** (opis profilu, kategorie, service area), a NIE w nazwie.
+>
+> **Nie dodawać do nazwy:** słów kluczowych ("Deutschunterricht", "German lessons"), "Wien" jako członu marketingowego, myślników z opisem działalności, emoji ani wariantów typu "Best German Tutor". Nazwa z dopiskiem opisowym (np. `Radoslaw Pleskot – Deutschunterricht Wien`) jest dopuszczalna **wyłącznie**, jeśli jest to rzeczywista, zarejestrowana nazwa działalności — w innym wypadku Google może odrzucić profil przy weryfikacji.
+>
+> Uwaga: nazwa w GBP może wymagać wariantu ASCII (limit znaków / walidacja UI). Warianty do wyboru przy zakładaniu (jeden, spójny):
+> - `Radosław Pleskot` (preferowany — dokładna nazwa publiczna)
+> - `Radoslaw Pleskot` (wariant ASCII, jeśli UI odrzuca diakrytyki)
 > Wybór należy potwierdzić w UI (`VERIFY_CURRENT_UI`) i używać **tej samej** wersji w GBP, katalogach i na stronie.
 
 ---

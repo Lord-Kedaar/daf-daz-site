@@ -12,12 +12,12 @@ Repo: `Lord-Kedaar/daf-daz-site` — **bez push/deploy z tego workspace bez jawn
 | `assets/` | współdzielone assety (css/js/img/icons) — NIE są kopiowane przez build, linkowane bezpośrednio |
 | `index.html`, `pl/`, `en/`, `legal/`, `deutsch-*/`, `pl/niemiecki-*/` | **generated output** — nie edytować ręcznie, tylko przez `build.py` |
 | `404.html` | osobny publiczny plik (nie output builda), `noindex` |
-| `sitemap.xml`, `robots.txt` | ręcznie utrzymywane, weryfikowane przez sanity_check |
+| `sitemap.xml` | generowany przez `build.py` (po buildzie, lastmod = data buildu); `robots.txt` ręcznie utrzymywany, oba weryfikowane przez sanity_check |
 
 ## Build
 
 ```bash
-python3 build.py          # generuje 13 plików HTML z _src/ (exit 0)
+python3 build.py          # generuje 13 plików HTML z _src/ + sitemap.xml (exit 0)
 ```
 
 Idempotencja: dwa kolejne buildy muszą dać identyczne hashe

@@ -16,6 +16,7 @@ import html.parser
 import json
 import os
 import re
+import subprocess
 import sys
 
 BASE = "https://daf-daz.radoslaw-pleskot.com"
@@ -605,6 +606,14 @@ def main():
         with open(path, "w", encoding="utf-8") as f:
             f.write(html)
         print(f"  wrote {path} ({len(html)} bytes)")
+
+    # Sitemap — deterministic post-build step: regenerate with today's lastmod.
+    # Fail-closed: a broken sitemap generator must fail the build, not ship stale.
+    sitemap_script = os.path.join("scripts", "make_sitemap.py")
+    if not os.path.exists(sitemap_script):
+        print(f"ERROR: missing {sitemap_script} — sitemap not regenerated", file=sys.stderr)
+        sys.exit(1)
+    subprocess.run([sys.executable, sitemap_script], check=True)
     print("done.")
 
 
