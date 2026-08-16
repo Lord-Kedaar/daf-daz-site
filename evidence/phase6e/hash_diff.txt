@@ -1,1 +1,1 @@
-hash_diff exit=0 (0 = identical)
+IDEMPOTENCY: PASS (hash1 == hash2, diff empty)

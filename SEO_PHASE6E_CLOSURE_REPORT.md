@@ -120,15 +120,33 @@
 
 Wszystkie operacje **lokalne**. Zdalne reset/push/force-push `origin` — **ZAKAZ bez jawnego approval Radosława/Zołzy**.
 
+**Krok 0 — ochrona dirty tree (OBOWIĄZKOWY przed każdą operacją nadpisującą working tree):**
+
+```bash
+git status --porcelain          # sprawdź stan: modified + untracked
+git stash push -u -m "backup-$(date +%Y%m%d-%H%M%S)"   # wersja A: stash (z untracked)
+# ALBO
+git add -A && git commit -m "backup: dirty tree przed rollbackiem $(date +%Y%m%d-%H%M%S)"  # wersja B: commit backup
+# ALBO
+git branch backup-$(date +%Y%m%d-%H%M%S)   # wersja C: branch backup (nie przenosi zmian — wymaga A lub B)
+```
+
+Bez zabezpieczonego dirty tree: **STOP** — `git reset --hard`, `git checkout -- .` i
+`git checkout <ref> -- .` nadpisują tracked working tree bezpowrotnie.
+
 | Cel | Komenda | Warunki bezpieczeństwa |
 |-----|---------|------------------------|
-| Odtwórz stan PO remediacji 6C | `git reset --hard 0523456` | stan z remediacją; NIE cofa 6C |
-| Cofnij Phase 6C (usuń remediację) | `git revert 0523456` | bezpieczny, historia nietknięta; preferowany |
-| Cofnij Phase 6C (alternatywa) | `git reset --hard 0d14ed3` | **wyłącznie po zabezpieczeniu dirty tree** (commit/stash zmian 6E i faz 1–6A); 0d14ed3 = PO Phase 5, PRZED 6C |
-| Cofnij working tree do HEAD | `git checkout -- .` + `python3 build.py` | traci zmiany w tree; najpierw commit/stash |
-| Stan sprzed SEO | `git checkout c957dda -- .` | commity/origin nietknięte; NIE `reset --hard origin/main` (0d14ed3 = PO SEO) |
-| Selektywnie | `git revert d929a75..0d14ed3` (odwrotnie) | per-faza |
-| Zdalne repo | — | **ZAKAZ bez jawnego approval** |
+| Cofnij Phase 6E (2 commity) | `git revert --no-edit b495551 6083ad4` (odwrotnie) | bezpieczny, historia nietknięta; preferowany |
+| Cofnij Phase 6E (alternatywa) | `git reset --hard 0523456` | **wyłącznie po kroku 0**; 0523456 = stan PO 6C, PRZED 6E |
+| Cofnij Phase 6C (usuń remediację) | `git revert --no-edit 0523456` | bezpieczny, historia nietknięta; preferowany |
+| Cofnij Phase 6C (alternatywa) | `git reset --hard 0d14ed3` | **wyłącznie po kroku 0**; 0d14ed3 = stan PO Phase 5, PRZED 6C |
+| Cofnij Phase 1–5 (selektywnie, włącznie z d929a75) | `git revert --no-edit d929a75 b7e2457 7399a47 1680630 267f42b 54eef98 4a7fafb 0d14ed3` (odwrotnie) | per-faza; zakres jawnie obejmuje pierwszy commit SEO `d929a75` |
+| Cofnij working tree do HEAD | `git checkout -- .` + `python3 build.py` | **wyłącznie po kroku 0**; traci zmiany w tree |
+| Stan sprzed SEO (pełny pakiet) | `git checkout c957dda -- .` + `python3 build.py` | **wyłącznie po kroku 0**; commity/origin nietknięte; NIE `reset --hard origin/main` |
+| Zdalne repo | — | **ZAKAZ bez jawnego approval** — żaden reset/push/force-push `origin` |
+
+Uwaga: `origin/main` (0d14ed3) to stan PO Phase 5, NIE punkt sprzed SEO.
+Ostatni commit sprzed faz SEO: `c957dda`. Pełny zakres SEO: `d929a75..b495551` (11 commitów).
 
 ## 5. HUMAN_REQUIRED (dla Zołzy / Radosława — bez zmian względem 6C)
 

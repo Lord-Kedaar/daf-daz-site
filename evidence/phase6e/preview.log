@@ -1,0 +1,17 @@
+=== COMMAND ===
+python3 -m http.server 8899 --bind 127.0.0.1 (background if not already running)
+curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:8899<url>  (per key URL)
+=== ENV ===
+cwd: /Users/radek/PROJECTS/daf-daz-site
+date: 2026-08-16 09:14:09 +0200
+=== STDOUT+STDERR ===
+server: already running on 8899 (external, not managed by this runner)
+GET / -> HTTP 200
+GET /pl/ -> HTTP 200
+GET /en/ -> HTTP 200
+GET /legal/privacy.html -> HTTP 200
+GET /deutsch-privatunterricht-wien/ -> HTTP 200
+GET /deutsch-fuer-polnischsprachige-wien/ -> HTTP 200
+GET /pl/niemiecki-dla-polakow-wieden/ -> HTTP 200
+GET /pl/przygotowanie-oeif-oesd-wieden/ -> HTTP 200
+=== EXIT CODE: 0 ===

@@ -1,11 +1,11 @@
 === COMMAND ===
 python3 build.py 
 === ENV ===
-node: v22.22.3
-python3: Python 3.9.6
+node: v24.16.0
+python3: Python 3.14.6
 chrome: "Browser": "Chrome/151.0.7922.138"
 cwd: /Users/radek/PROJECTS/daf-daz-site
-date: 2026-08-16 01:06:12 +0200
+date: 2026-08-16 09:13:15 +0200
 === STDOUT+STDERR ===
 build.py — base: https://daf-daz.radoslaw-pleskot.com
   wrote index.html (34201 bytes)
@@ -23,3 +23,4 @@ build.py — base: https://daf-daz.radoslaw-pleskot.com
   wrote pl/przygotowanie-oeif-oesd-wieden/index.html (22795 bytes)
 done.
 === EXIT CODE: 0 ===
+=== DURATION: 0s ===
